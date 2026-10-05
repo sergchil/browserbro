@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "fallback": "picker",
+  "pickerOverrideModifier": "option",
+  "rules": [
+    { "id": "00000000-0000-0000-0000-000000000001", "name": "Work tools", "enabled": true,
+      "match": { "mode": "any", "conditions": [
+        { "type": "domain", "value": "linear.app" },
+        { "type": "domain", "value": "slack.com" },
+        { "type": "domain", "value": "atlassian.net" },
+        { "type": "sourceApp", "value": "com.tinyspeck.slackmacgap" } ] },
+      "target": { "app": "com.google.Chrome", "profile": "Profile 3" } },
+    { "id": "00000000-0000-0000-0000-000000000002", "name": "Google Docs, not from Mail", "enabled": true,
+      "match": { "mode": "all", "conditions": [
+        { "type": "domain", "value": "docs.google.com" },
+        { "type": "sourceApp", "value": "com.apple.mail", "negate": true } ] },
+      "target": { "app": "org.mozilla.firefox", "profile": "Profiles/a1b2c3d4.Profile 2" } },
+    { "id": "00000000-0000-0000-0000-000000000003", "name": "Localhost", "enabled": true,
+      "match": { "mode": "any", "conditions": [
+        { "type": "hostIs", "value": "localhost" },
+        { "type": "hostIs", "value": "127.0.0.1" } ] },
+      "target": { "app": "com.google.Chrome.canary" } },
+    { "id": "00000000-0000-0000-0000-000000000004", "name": "Acme admin", "enabled": true,
+      "match": { "mode": "all", "conditions": [
+        { "type": "domain", "value": "acme.com" },
+        { "type": "pathPrefix", "value": "/admin" } ] },
+      "target": { "app": "com.brave.Browser", "profile": "Profile 2" } },
+    { "id": "00000000-0000-0000-0000-000000000005", "name": "Acme", "enabled": true,
+      "match": { "mode": "any", "conditions": [ { "type": "domain", "value": "acme.com" } ] },
+      "target": { "app": "com.google.Chrome", "profile": "Profile 3" } },
+    { "id": "00000000-0000-0000-0000-000000000006", "name": "Shift → Safari", "enabled": true,
+      "match": { "mode": "all", "conditions": [ { "type": "modifier", "value": "shift" } ] },
+      "target": { "app": "com.apple.Safari" } },
+    { "id": "00000000-0000-0000-0000-000000000007", "name": "YouTube videos", "enabled": true,
+      "match": { "mode": "any", "conditions": [ { "type": "regex", "value": "^https://(www\\.|m\\.)?youtube\\.com/watch" } ] },
+      "target": { "app": "com.apple.Safari" } },
+    { "id": "00000000-0000-0000-0000-000000000008", "name": "GitHub Pages", "enabled": true,
+      "match": { "mode": "any", "conditions": [ { "type": "wildcard", "value": "*.github.io" } ] },
+      "target": { "app": "org.mozilla.firefox" } },
+    { "id": "00000000-0000-0000-0000-000000000009", "name": "Disabled catch-all", "enabled": false,
+      "match": { "mode": "any", "conditions": [] },
+      "target": { "app": "com.brave.Browser" } },
+    { "id": "00000000-0000-0000-0000-000000000010", "name": "Zoom campaign links", "enabled": true,
+      "match": { "mode": "any", "conditions": [ { "type": "urlContains", "value": "UTM_SOURCE=zoom" } ] },
+      "target": { "app": "com.apple.Safari" } }
+  ]
+}

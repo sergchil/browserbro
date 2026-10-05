@@ -1,0 +1,2202 @@
+[
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://linear.app/acme/issue/ABC-87",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://app.slack.com/client/T1/C2",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.atlassian.net/wiki/spaces/X",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notlinear.app/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://docs.google.com/document/d/abc/edit",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://DOCS.Google.com./spreadsheets/d/1",
+  "expect": "org.mozilla.firefox#Profiles/a1b2c3d4.Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://drive.google.com/file/d/1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://localhost:3000/debug",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "http://127.0.0.1:8080/",
+  "expect": "com.google.Chrome.canary",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/uae",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.acme.com/admin/orders",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://acme.com/administrator",
+  "expect": "com.brave.Browser#Profile 2",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://notacme.com/admin",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://m.youtube.com/watch?v=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://youtube.com/shorts/abc",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "org.mozilla.firefox"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "org.mozilla.firefox",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "org.mozilla.firefox",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://sergchil.github.io/blog/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://a.b.github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://github.io/",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/?utm_source=Zoom&x=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.com/plain",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://news.ycombinator.com/item?id=1",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://www.bbc.co.uk/news",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Router",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.google.Chrome#Profile 3",
+  "from": "com.tinyspeck.slackmacgap",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "from": "com.apple.mail"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "from": "com.apple.mail",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.mail",
+  "modifiers": "shift+command"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "from": "com.apple.Terminal"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "picker",
+  "from": "com.apple.Terminal",
+  "modifiers": "option"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift"
+ },
+ {
+  "url": "https://example.org:8443/path?q=1#frag",
+  "expect": "com.apple.Safari",
+  "from": "com.apple.Terminal",
+  "modifiers": "shift+command"
+ }
+]
