@@ -43,44 +43,43 @@ What we do **not** take: the placement. BrowserBro never draws at the top of the
 
 ## A4. The Drop (picker)
 
-### Layout (notch display, 5 targets)
+### Layout (5 targets)
 
 ```text
-              ┌──────── hardware notch ────────┐
-╭─────────────┤                                ├─────────────╮   ← top edge of screen
-│ (ears: concave corners blend into menu bar)                │
-│  🌐 linear.app                                 from  Slack  │   ← header
-│     https://linear.app/acme/issue/ABC-…/…            │
-│                                                            │
-│  ╭────────╮ ╭────────╮ ╭────────╮ ╭────────╮ ╭────────╮    │
-│  │ Chrome │ │ Chrome │ │ Safari │ │Firefox │ │  Zen   │    │   ← target tiles (Liquid Glass)
-│  │  Work  │ │Personal│ │        │ │  Dev   │ │        │    │
-│  │   1    │ │   2    │ │   3    │ │   4    │ │   5    │    │   ← key hints
-│  ╰────────╯ ╰────────╯ ╰────────╯ ╰────────╯ ╰────────╯    │
-│                                                            │
-│  ( ◯ Always open linear.app here   ⇥ )      ⌥ private  esc │   ← footer chips
-╰────────────────────────────────────────────────────────────╯
+  ↓ the mouse pointer lands on the icon of tile 1
+╭──────────────────────────────────────────────────────────────╮
+│  🌐 linear.app                                 from  Slack    │   ← header
+│     https://linear.app/acme/issue/ABC-…/…              │
+│                                                              │
+│  ╭────────╮ ╭────────╮ ╭────────╮ ╭────────╮ ╭────────╮      │
+│  │ [icon] │ │ [icon] │ │ [icon] │ │ [icon] │ │ [icon] │      │   ← target tiles (Liquid Glass)
+│  │  Work  │ │Personal│ │ Safari │ │  Dev   │ │  Zen   │      │   ← profile name first
+│  │ Chrome │ │ Chrome │ │        │ │Firefox │ │        │      │   ← browser as subtitle
+│  │   1    │ │   2    │ │   3    │ │   4    │ │   5    │      │   ← key hints
+│  ╰────────╯ ╰────────╯ ╰────────╯ ╰────────╯ ╰────────╯      │
+│                                                              │
+│ ( ◯ Always open linear.app here ⇥ )  ⌥ private ⌘C copy esc  │   ← footer chips
+╰──────────────────────────────────────────────────────────────╯
 ```
 
-### Geometry
+### Placement and geometry
 
-- **Width:** content-sized. Tile 88 × 92 pt, gap 10 pt, side padding 20 pt. 5 tiles ≈ 520 pt. Min 360 pt, max 720 pt. More than 7 targets → second row (max 2 rows; extra targets scroll horizontally).
-- **Height:** header 52 + tiles 92 + footer 40 + padding ≈ 216 pt.
-- **Top:** flush with the top of the screen. The top band (the height of the menu bar) stays black so the notch blends in.
-- **Ears:** the two top corners curve **outward** (concave, radius 10 pt) into the menu bar, like OmniNotch. This is drawn with a custom `Shape`.
-- **Bottom corners:** radius 30 pt, continuous (`.continuous` style).
-- **Notch size is never hard-coded.** Read it at runtime from `NSScreen.safeAreaInsets.top`, `auxiliaryTopLeftArea` and `auxiliaryTopRightArea`. Recompute on `NSApplication.didChangeScreenParametersNotification`.
+- **Placement:** the card opens on the screen that has the mouse pointer. It is placed so the **icon of tile 1 sits right under the pointer** (`DropLayout.hotSpot`). So choice 1 needs no mouse travel.
+- **Clamping:** the card always stays inside the visible part of that screen (`NSScreen.visibleFrame`, 8 pt inset). Near an edge it shifts in, so tile 1 is near the pointer, not under it.
+- **Size:** content-sized. Tile 92 × 100 pt, gap 10 pt, side padding 18 pt. Max **6 tiles per row**; more targets add rows. Min width 380 pt.
+- **Height:** top 14 + header 50 + rows of tiles + footer 46.
+- **Corners:** radius 26 pt, continuous.
+- **Shadow margin:** the window is 30 pt bigger than the card on every side, so the shadow is not cut off.
 
 ### Material and color
 
 | Element | Material | Notes |
 |---|---|---|
-| Shell on a notch display | Solid black (`Color.black`), shadow radius 24, y 8, opacity 0.35 | Black is the one allowed fixed color: it must match the hardware notch. |
-| Shell on a display without a notch | `.glassEffect(.regular, in: .rect(cornerRadius: 30))` | Floating glass panel hanging from the top center. |
+| Card | `.glassEffect(.regular, in: .rect(cornerRadius: 26))`, shadow radius 18, y 8, opacity 0.18 | One floating glass card. No fixed background color. |
 | Target tile | `.glassEffect(.regular.interactive(), in: .rect(cornerRadius: 18))` | Reacts to hover and press like system glass buttons. |
 | Selected tile ("lens") | `.glassEffect(.regular.tint(<profile color>).interactive(), ...)` + `glassEffectID` | The lens **morphs** from tile to tile as you press arrows. |
 | Chips | `.glassEffect(.regular, in: .capsule)` | Toggle chip gets a tint when on. |
-| Text | `.primary` / `.secondary` | On the black shell, the system resolves these to light colors via a forced dark color scheme on the panel. |
+| Text | `.primary` / `.secondary` | Follows the system light / dark appearance. |
 
 All tiles and the lens live inside one `GlassEffectContainer(spacing: 12)`, so glass shapes blend and morph instead of rendering as separate layers (Apple: "Applying Liquid Glass to custom views").
 
@@ -90,9 +89,9 @@ All tiles and the lens live inside one `GlassEffectContainer(spacing: 12)`, so g
 
 ```text
 ╭──────────────╮
-│   [icon]●    │  ← browser app icon 40 pt; ● profile badge 16 pt (avatar image or monogram)
-│   Chrome     │  ← 12 pt semibold, 1 line
-│   Work       │  ← 11 pt regular, .secondary, 1 line, truncates tail
+│   [icon]●    │  ← browser app icon 40 pt; ● profile badge (avatar image or monogram)
+│   Work       │  ← title: profile name (or custom label; browser name if no profile). 12 pt semibold, 1 line
+│   Chrome     │  ← subtitle: browser name. 11 pt regular, .secondary, 1 line, truncates tail
 │     1        │  ← key hint in a tiny capsule, 10 pt monospaced digits
 ╰──────────────╯
 ```
@@ -116,11 +115,11 @@ The host shows a generic `globe` SF Symbol. We never fetch a favicon (PRD N-3).
 
 | Moment | Animation |
 |---|---|
-| Open | Shell morphs from the notch rectangle to the full panel: `.spring(response: 0.38, dampingFraction: 0.78)`. Content fades in with a 60 ms delay and a 6 pt downward slide. |
+| Open | The card grows out of the pointer: scale 0.6 → 1 and fade in, anchored at the pointer, `.spring(response: 0.3, dampingFraction: 0.78)`. |
 | Arrow keys | Lens moves to the next tile with `.spring(response: 0.28, dampingFraction: 0.82)`; glass morph handles the shape change. |
-| Choose | Chosen tile scales to 1.06 for 90 ms, then the panel collapses back into the notch (`response 0.32, damping 0.9`). The app icon rides up into the notch and fades. |
-| Cancel (`Esc` or click outside) | Collapse with no tile highlight. |
-| Queue ("1 of 3") | Header content cross-fades to the next link; the shell stays open. |
+| Choose / close | The card shrinks back into the pointer and fades: `.spring(response: 0.25, dampingFraction: 0.9)`. |
+| Cancel (`Esc` or click outside) | Same shrink into the pointer. |
+| Queue ("1 of 3") | Header content changes to the next link; the card stays open and does not move. |
 
 ### Interaction
 
@@ -131,23 +130,31 @@ The host shows a generic `globe` SF Symbol. We never fetch a favicon (PRD N-3).
 | `Return` | Open in the target under the lens. |
 | `⌥` + choice | Private window (if supported; otherwise the key does nothing and the tile shows no mask). |
 | `Tab` | Toggle "Always open \<domain\> here". |
+| `⌘C` | Copy the link URL. The picker stays open. |
 | `Esc` / click outside | Cancel. The link is not opened. |
 | Hover a tile | Lens follows the pointer. |
+| Click a tile | Open in that target. |
 
 The panel is a non-activating `NSPanel` (it takes key input without stealing the app focus forever), so after the choice, focus goes straight to the browser.
+
+**Which targets show.** Known web browsers show by default. Other apps that accept `https` links (for example iTerm or cmux) are hidden in the picker by default. The user can show them in Settings → Browsers & Profiles.
 
 ## A5. The Pulse (routed by a rule)
 
 ```text
-╭──────────┤   notch   ├──────────╮
-│ [Chrome●]              Work  ›  │    ← notch widens ~110 pt on each side, same height as the notch
-╰─────────────────────────────────╯
+   ↖ pointer
+     ╭──────────────────────────────╮
+     │ ↳ [Chrome●]  Chrome · Work › │    ← small glass capsule, just below-right of the pointer
+     ╰──────────────────────────────╯
 ```
 
-- Left ear: target app icon with profile badge. Right ear: profile or browser name and a chevron.
-- Shows for 1.4 s; stays while hovered; click → opens the Drop for the same link ("open elsewhere"). The original tab has already opened; the Drop only opens it a second time in the new target.
-- Spring: `response 0.34, damping 0.8`. With Reduce Motion: fade only.
-- On a display without a notch, the pulse is a small glass capsule at the top center, right under the menu bar.
+- A small Liquid Glass capsule (34 pt high, corner radius 17 pt). It sits just below and to the right of the pointer, so it never covers the next click.
+- Content: an arrow, the target icon with profile badge, the target name, a chevron.
+- Kept inside the visible part of the screen with the pointer, like the Drop.
+- Shows for ~1.6 s; stays while hovered. Click → opens the Drop for the same link ("open elsewhere"). The original tab has already opened; the Drop only opens it a second time in the new target.
+- Never shown while the Drop is open.
+- Grows out of the pointer with a spring: `response 0.3, damping 0.8`. With Reduce Motion: fade only.
+- The same capsule, wider (up to 420 pt) and for ~4 s, shows short error messages.
 - Can be turned off in Settings → General.
 
 ## A6. Menu bar extra
@@ -178,7 +185,7 @@ Menu bar icon: a custom template glyph (a small arrow splitting into two). Templ
 
 | Sidebar item | Content |
 |---|---|
-| **General** | Default-browser status + button; fallback (picker / default target); override modifier; pulse on/off; launch at login; display mode (auto / always top-center). |
+| **General** | Default-browser status + button; fallback (picker / default target); override modifier; pulse on/off; launch at login. |
 | **Browsers & Profiles** | List of targets grouped by browser; show/hide toggle; drag to reorder; custom key (1–9); custom label. Broken targets shown with a warning. |
 | **Rules** | Ordered list with enable toggles, drag handles and conflict badges. Detail pane = rule editor. |
 | **Tester** | URL field, sender-app picker, modifier toggles → result card and trace. |
@@ -224,19 +231,21 @@ Trace
 
 | Setting | Behavior |
 |---|---|
-| Reduce Transparency | Glass becomes solid: tiles use `.background(.quaternary)` on black; floating panel uses `.background(.windowBackground)`. |
-| Reduce Motion | All springs become 150 ms cross-fades; no morphing; lens jumps. |
+| Reduce Transparency | Glass becomes solid: the card and the pulse use `.windowBackground` with a `.separator` border; tiles use `.quaternary` (selected tile: profile tint). |
+| Reduce Motion | Open and close become a 120 ms ease-out fade; no growing from the pointer; the lens jumps. |
 | Increase Contrast | 1 pt `.separator` borders on tiles and chips; key hints use `.primary`. |
 | VoiceOver | Drop announces "Open linear.app from Slack. 5 choices." Each tile: "Chrome, Work profile, key 1". Pulse posts an announcement "Opened in Chrome, Work". |
 | Keyboard only | Everything reachable; Drop is fully usable without a mouse. |
 
 ## A9. Edge cases in the UI
 
-- **Full-screen app on the notch display:** the menu bar is hidden; the Drop still drops from the top center of that display.
+- **Pointer near a screen edge or the Dock:** the card is clamped to the visible screen area, so it shifts in. Tile 1 is then near the pointer, not under it.
 - **Two displays:** the Drop opens on the display with the mouse pointer (PRD F-PICK-7).
+- **Full-screen app:** the panel joins full-screen Spaces (`.fullScreenAuxiliary`), so the Drop still opens at the pointer.
+- **Link opened without a click** (from a script or the keyboard): the Drop opens wherever the pointer is.
+- **Several links in a row:** the card stays where it first opened; only its content changes ("1 of 3").
 - **Very long host** (e.g. a long subdomain): truncate the head, keep the registrable domain visible: `…ci.eu-west-1.acme.com`.
 - **Zero targets** (fresh install, catalog empty): Drop shows "No browsers found" and a button to open Settings.
-- **Another notch app is active:** user can switch BrowserBro to "always top-center" mode.
 
 ---
 
@@ -276,7 +285,7 @@ Trace
 | `ProfileReaders` | App | `ChromiumProfileReader` (`Local State`), `GeckoProfileReader` (`profiles.ini`), `SafariProfileReader` (P2). | Foundation |
 | `Launcher` | App | Per-family launch strategies (§B5). Reports success / failure. | AppKit |
 | `Router` | App, `@MainActor` | Glue: request → decision → launcher or Drop; queue for many links; fallback chain. | all above |
-| `DropPresenter`, `PulsePresenter` | App | `NSPanel` hosting SwiftUI views; notch geometry; screen selection. | AppKit, SwiftUI |
+| `DropPresenter`, `PulsePresenter` | App | `NSPanel` hosting SwiftUI views; placement at the pointer (`CursorPlacement`); screen selection. | AppKit, SwiftUI |
 | `RuleStore` | App | Load / save / watch `rules.json`; keeps last good copy; publishes changes. | RoutingCore |
 | `SettingsUI`, `MenuBar` | App | SwiftUI scenes. | Store, catalog |
 | `bro` CLI (dev tool) | Executable target | `bro test <url> --from <bundleID> [--option]` prints the trace. Used in CI and while editing rules. | RoutingCore |
@@ -365,13 +374,20 @@ public func decide(_ req: RouteRequest, rules: CompiledRules,
 - Files are watched with `DispatchSource.makeFileSystemObjectSource` on the parent folder (files are replaced atomically by browsers, so we watch the folder, not the file).
 - Read-only. We never write to browser data.
 
-## B7. Panels and the notch
+## B7. Panels at the pointer
 
-- `NSPanel` with `styleMask: [.nonactivatingPanel, .borderless]`, `level: .statusBar + 1`, `collectionBehavior: [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]`, `isOpaque = false`, `backgroundColor = .clear`, `hasShadow = false` (SwiftUI draws the shadow).
-- Becomes key only while the Drop is shown (`canBecomeKey = true` override) so number keys work; resigns on close.
-- Frame: centered on the notch: `x = screen.frame.midX - width/2`, `y = screen.frame.maxY - height`.
-- Notch detection: `screen.safeAreaInsets.top > 0` and both `auxiliaryTopLeftArea` / `auxiliaryTopRightArea` are non-nil → notch mode; otherwise top-center glass mode.
-- The SwiftUI root view owns the morph: one `@State var phase: .closed | .open` drives the shell shape from the notch rect to the panel rect.
+Code: `Sources/BrowserBro/Floating.swift` (`FloatingPanel`, `CursorPlacement`), `Drop.swift`, `Pulse.swift`.
+
+- `FloatingPanel` is an `NSPanel` with `styleMask: [.borderless, .nonactivatingPanel]`, `level: .popUpMenu`, `collectionBehavior: [.canJoinAllSpaces, .fullScreenAuxiliary, .transient, .ignoresCycle]`, `isOpaque = false`, `backgroundColor = .clear`, `hasShadow = false` (SwiftUI draws the shadow).
+- The Drop panel can become key (`canBecomeKey = true`), so number keys work. The Pulse panel cannot.
+- Keys come from a local `NSEvent` monitor while the Drop is visible. A global mouse-down monitor closes the Drop on a click outside.
+- **Placement (`CursorPlacement.frame`):**
+  1. Read `NSEvent.mouseLocation`. Pick the screen that contains it.
+  2. Window size = card size + 30 pt shadow margin on each side.
+  3. Place the window so the card's hot spot is under the pointer. Drop: hot spot = icon of tile 1. Pulse: hot spot is outside the card, so the capsule sits below-right of the pointer.
+  4. Clamp so the card stays inside `screen.visibleFrame` (inset 8 pt).
+  5. Return where the pointer is inside the window, as a `UnitPoint`. SwiftUI uses it as the `scaleEffect` anchor, so the card grows out of the pointer.
+- The Drop keeps its frame while open. It is placed again only when it opens, or when its number of rows changes.
 
 ## B8. Storage
 

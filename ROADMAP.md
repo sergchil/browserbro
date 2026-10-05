@@ -31,7 +31,7 @@ Total to v1.0: about 4 weeks of part-time work (estimate, not measured).
 | S2 Sender + modifiers | Do we get the `'spid'` sender for Slack, Mail, Messages, Terminal (`open https://…`), Notes, Linear desktop? Is `NSEvent.modifierFlags` still correct when the event arrives? | Table of apps → sender result; ⌥-click detected in ≥ 9 of 10 tries. |
 | S3 Chromium profiles | Does `--profile-directory=` hand off to a **running** Chrome, Brave, Edge, Vivaldi? Arc, Dia, Opera? | Per-browser yes/no table, recorded with screenshots. |
 | S4 Gecko profiles | Firefox and Zen: open a link in profile B while profile A runs. Which argument set works? | A working argument set, or a documented "not possible" with the error. |
-| S5 Notch panel | `NSPanel` over the menu bar at the notch, takes number keys, does not steal focus, works in full-screen Spaces; `glassEffect` renders inside it. | Screen recording on a notch MacBook + an external display. |
+| S5 Floating panel at the pointer | A `NSPanel` placed at the mouse pointer takes number keys, does not steal focus, works in full-screen Spaces; `glassEffect` renders inside it. | Screen recording on a MacBook display + an external display. |
 
 **Deliverable:** `spikes/FINDINGS.md` with the tables above. Update `DESIGN.md` §B4–B7 and the PRD risk table with the results.
 **Exit:** every P0 launch path is either proven, or moved to "browser-level only" in the PRD.
@@ -89,20 +89,20 @@ Tasks:
 
 ## Phase 3: The Drop and the Pulse (Liquid Glass UI)
 
-**Goal:** the notch-native picker and the routed toast from `DESIGN.md` §A4–A5.
+**Goal:** the picker at the pointer and the routed toast from `DESIGN.md` §A4–A5.
 **Requirements:** F-PICK-1…8, F-RULE-6, F-FB-1, N-6 (picker part).
 
 Tasks:
-1. `DropPresenter`: `NSPanel` setup, notch geometry from `NSScreen`, screen with the pointer, notch vs top-center mode.
-2. Shell `Shape` with concave ears and continuous bottom corners; spring morph from the notch rect.
+1. `DropPresenter`: `NSPanel` setup, placement at the pointer (`CursorPlacement`: tile 1 under the pointer, clamped to the visible screen), screen with the pointer.
+2. Glass card (corner radius 26); spring growth out of the pointer.
 3. Tiles + lens inside `GlassEffectContainer`; `glassEffectID` morph; profile tint.
 4. Keyboard: 1–9, arrows, Return, Esc, ⌥ private, Tab "Always open here" (creates a Domain rule + conflict check from RoutingCore).
 5. Queue for many links ("1 of 3").
-6. `PulsePresenter`: widened-notch toast, hover-to-hold, click → Drop for the same link.
+6. `PulsePresenter`: glass capsule below-right of the pointer, hover-to-hold, click → Drop for the same link.
 7. Override modifier (default ⌥) forces the Drop.
 8. Reduce Transparency / Reduce Motion / Increase Contrast variants; VoiceOver labels and announcements.
 
-**Proof:** screen recordings on (a) a notch MacBook, (b) an external display, (c) with Reduce Motion and Reduce Transparency on. Signpost trace shows Drop visible < 150 ms after the event.
+**Proof:** screen recordings on (a) a MacBook display, (b) an external display, (c) with the pointer near each screen edge, (d) with Reduce Motion and Reduce Transparency on. Signpost trace shows Drop visible < 150 ms after the event.
 **Exit:** fallback setting defaults to "Show picker"; Phase 2 proofs still pass. **v0.2.**
 
 ---
@@ -132,7 +132,7 @@ Tasks:
 
 Tasks:
 1. Browser matrix run: Safari, Chrome (2+ profiles), Firefox (2+ profiles), Brave or Arc, Zen — each running and not running.
-2. Display matrix: notch MacBook, external monitor, two displays, full-screen Space.
+2. Display matrix: MacBook display, external monitor, two displays, full-screen Space, pointer near screen edges.
 3. Performance pass with Instruments against N-1 and N-2 budgets.
 4. Privacy pass: 1-hour session with `nettop` → 0 connections.
 5. Onboarding: first launch window (set default browser → pick fallback → optional first rule).
@@ -169,7 +169,7 @@ Listed so they are not re-proposed: URL rewriting / tracking strip, unshortener,
 | Chromium-family flag differences | Phase 0 (S3), confirmed in Phase 5 matrix |
 | Missing sender PID | Phase 0 (S2) |
 | Default-browser API behavior | Phase 0 (S1) |
-| Notch panel focus / Spaces issues | Phase 0 (S5), Phase 3 |
+| Floating panel focus / Spaces issues | Phase 0 (S5), Phase 3 |
 | Unsigned build friction | Phase 5 docs |
 
 ## Definition of done (every phase)

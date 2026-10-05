@@ -9,7 +9,7 @@ Related: `RESEARCH.md` (market and tech findings), `DESIGN.md` (UI and system de
 BrowserBro is a native macOS app that becomes the system default browser. When you click a link in any app, BrowserBro decides **which browser and which profile** should open it:
 
 1. If a rule matches, it opens the link there right away.
-2. If no rule matches, it shows a small Liquid Glass picker that grows out of the MacBook notch. One key press opens the link, and you can save the choice as a new rule.
+2. If no rule matches, it shows a small Liquid Glass picker right next to the mouse pointer, where you clicked the link. One key press opens the link, and you can save the choice as a new rule.
 
 It runs fully on device. It makes no network calls and uses no paid services.
 
@@ -66,7 +66,7 @@ BrowserBro does **rule-based link → browser/profile selection** and nothing el
 3. As a dev, I hold `⌥` (Option) while clicking a link to force the picker, even if a rule matches.
 4. As any user, I paste a URL into the tester, choose "from Slack", and see which rule wins and why each other rule failed.
 5. As any user, when I add a rule that an earlier rule already covers, I see a warning before I save.
-6. As any user, I see a short notch "pulse" telling me where a link went, and I can click it to re-open the link somewhere else.
+6. As any user, I see a short "pulse" next to the pointer telling me where a link went, and I can click it to re-open the link somewhere else.
 7. As a power user, I edit `rules.json` in my editor and the app reloads it; if the file is invalid, the app keeps the last good rules and tells me the line with the error.
 
 ## 7. Functional requirements
@@ -124,15 +124,15 @@ A rule = **conditions** + **target** + **options**. Rules are ordered; the **fir
 | F-PICK-3 | P0 | Mouse: click a target. |
 | F-PICK-4 | P1 | "Always open \<domain\> here" toggle (`Tab` toggles it). When on, choosing a target also creates a Domain rule at the end of the rule list, and shows a conflict warning if needed. |
 | F-PICK-5 | P1 | `⌥` + choice = open in a private window (if supported). |
-| F-PICK-6 | P1 | Notch-native presentation and Liquid Glass styling (see `DESIGN.md`). Works on Macs without a notch and on external displays. |
-| F-PICK-7 | P1 | The picker opens on the display that has the mouse pointer. |
+| F-PICK-6 | P1 | The picker is a floating Liquid Glass card that opens next to the mouse pointer: the icon of target 1 sits under the pointer, and the card grows out of it with a spring. It always stays inside the visible screen. Tiles show the profile first, the browser second. Style: see `DESIGN.md` §A4. |
+| F-PICK-7 | P1 | The picker opens on the display that has the mouse pointer, at the pointer. Same behavior on every display and in full-screen Spaces. |
 | F-PICK-8 | P1 | If several links arrive while the picker is open, queue them and show "1 of 3". |
 
 ### 7.5 Feedback
 
 | ID | Pri | Requirement |
 |---|---|---|
-| F-FB-1 | P1 | "Routed" pulse: after a rule routes a link, the notch shows the target for ~1.4 s. Clicking it opens the picker for that same link ("open elsewhere"). Can be turned off. |
+| F-FB-1 | P1 | "Routed" pulse: after a rule routes a link, a small glass capsule just below-right of the pointer shows the target for ~1.6 s (longer while hovered). Clicking it opens the picker for that same link ("open elsewhere"). Can be turned off. |
 | F-FB-2 | P1 | Menu bar item shows the last 5 routing decisions (in memory only, cleared on quit) with the rule name, for debugging. |
 
 ### 7.6 Settings and rule management
@@ -234,7 +234,7 @@ open in default target
 - Performance budgets in N-1 are met on an M-series MacBook (measured with signposts in Instruments).
 - No outbound connection during a 1-hour daily-use session (N-3).
 - Works with: Safari, Chrome (2+ profiles), Firefox (2+ profiles), Arc or Brave, Zen.
-- Works on: MacBook with notch, external display without notch, two displays at once.
+- Works on: MacBook built-in display, external display, two displays at once, a full-screen Space.
 
 ## 13. Risks
 
@@ -245,12 +245,13 @@ open in default target
 | Sender PID is missing for some apps (e.g. links from Terminal via `open`). | Source-app rules miss. | Fallback to frontmost app; show "sender unknown" in tester and picker. |
 | macOS changes default-browser APIs or prompts. | Setup breaks. | Use public APIs only; status check on every launch. |
 | Unsigned / ad-hoc builds scare users. | Fewer users. | Clear build-from-source docs; this is a personal-first tool. |
-| Notch overlay conflicts with other notch apps. | Overlap. | Setting: notch mode or "top center" mode; picker uses a short-lived panel only. |
+| Picker at the pointer lands near a screen edge, or covers what the user was reading. | Tile 1 is not under the pointer; content is hidden for a moment. | Clamp the card to the visible screen; it closes on any click outside or `Esc`; the panel is short-lived. |
 
 ## 14. Decisions made (can be changed)
 
 - **macOS 26+ only**, to use Liquid Glass with no fallback code path.
 - **First match wins**, ordered list. No scoring or weights: easy to explain and to test.
 - **Picker is the default fallback**, not "open in default browser", so unknown links are never misrouted.
+- **Picker opens at the mouse pointer**, not at the top of the screen: the user's eyes and hand are already there, and choice 1 needs no mouse travel.
 - **No URL rewriting**, even though Finicky, Finch and Chowser have it: it is outside rule-based selection.
 - **JSON, not JavaScript**, for rules: safe to edit from the GUI and to analyze for conflicts. Custom code matchers stay out.
