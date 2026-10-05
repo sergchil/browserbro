@@ -42,6 +42,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             Task { await DemoTour(model: model).run() }
             return
         }
+        // Demo capture arguments (--demo-url, --demo-pane, --demo-rule, --demo-pick): see docs/DEMO.md.
+        if DemoMode.hasLaunchArguments {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                guard let self else { return }
+                DemoMode.runLaunchArguments(self.model) { self.openSettings(pane: $0) }
+            }
+            return
+        }
         // First launch by hand (not by a link): show Settings so the user can set things up.
         if !launchedWithLink && !SystemIntegration.isDefaultBrowser {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in

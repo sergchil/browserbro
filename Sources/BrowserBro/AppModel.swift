@@ -139,6 +139,12 @@ final class AppModel {
     func showPicker(_ item: PickerItem) {
         guard !pickerChoices.isEmpty else {
             // Never lose a link: with no targets at all, hand it to the previous default browser.
+            if DemoMode.isOn {
+                // Demo mode never opens a browser, not even the fallback one.
+                print("Demo: would open \(item.request.url.absoluteString) in the fallback browser")
+                fflush(stdout)
+                return
+            }
             Launcher.openWithFallbackBrowser(item.request.url, previousDefault: settings.settings.previousDefaultBrowser)
             return
         }

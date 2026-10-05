@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// Places a floating surface next to the mouse pointer, kept inside the visible part of that screen.
 enum CursorPlacement {
@@ -60,7 +61,10 @@ enum AppIcons {
 
     @MainActor static func icon(for appURL: URL) -> NSImage {
         if let i = cache[appURL] { return i }
-        let i = NSWorkspace.shared.icon(forFile: appURL.path)
+        // A missing app (e.g. a demo browser that is not installed) gets the generic app icon.
+        let i = FileManager.default.fileExists(atPath: appURL.path)
+            ? NSWorkspace.shared.icon(forFile: appURL.path)
+            : NSWorkspace.shared.icon(for: .applicationBundle)
         cache[appURL] = i
         return i
     }
@@ -104,7 +108,8 @@ struct ProfileBadge: View {
 
     var body: some View {
         Group {
-            if let url = avatarURL, let img = NSImage(contentsOf: url) {
+            // Demo mode never loads a profile picture: monograms only.
+            if !DemoMode.isOn, let url = avatarURL, let img = NSImage(contentsOf: url) {
                 Image(nsImage: img).resizable().scaledToFill()
             } else {
                 Text(String(name.prefix(1)).uppercased())

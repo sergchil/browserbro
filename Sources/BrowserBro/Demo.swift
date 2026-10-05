@@ -10,8 +10,51 @@ import RoutingCore
 enum DemoMode {
     static var isOn: Bool { ProcessInfo.processInfo.environment["BROWSERBRO_DEMO"] == "1" }
 
-    /// `--demo-url <url>`: pre-fills the Tester (demo mode only).
+    /// `--demo-url <url>`: opens Settings → Tester with this link filled in (demo mode only).
     static var testerURL: String? { isOn ? argument(after: "--demo-url") : nil }
+
+    /// `--demo-pane <general|browsers|rules|tester|about>`: opens Settings on this pane at launch.
+    /// `--demo-url` alone implies `tester`; `--demo-rule` alone implies `rules`.
+    static var pane: SettingsPane? {
+        guard isOn else { return nil }
+        if let raw = argument(after: "--demo-pane") { return SettingsPane(rawValue: raw) }
+        if testerURL != nil { return .tester }
+        if argument(after: "--demo-rule") != nil { return .rules }
+        return nil
+    }
+
+    /// `--demo-rule <n>`: on the Rules pane, the editor of rule n (1-based) is open. Default: rule 1.
+    static var ruleIndex: Int { argument(after: "--demo-rule").flatMap(Int.init).map { max($0, 1) } ?? 1 }
+
+    /// `--demo-pick <url>`: routes this link at launch, like a click from another app.
+    /// With no matching rule the picker opens at the pointer. `--demo-point <x>,<y>` first moves the
+    /// pointer there (points, top-left origin of the main display). `--demo-source <bundle id>` sets
+    /// the app the link came from (rules can match on it).
+    static var pickURL: URL? { isOn ? argument(after: "--demo-pick").flatMap(URL.init(string:)) : nil }
+    static var pickPoint: CGPoint? {
+        guard let raw = argument(after: "--demo-point") else { return nil }
+        let parts = raw.split(separator: ",").compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
+        return parts.count == 2 ? CGPoint(x: parts[0], y: parts[1]) : nil
+    }
+    static var pickSource: String? { argument(after: "--demo-source") }
+
+    /// Settings pane and picker requested on the command line.
+    @MainActor
+    static func runLaunchArguments(_ model: AppModel, openSettings: (SettingsPane) -> Void) {
+        if let pane {
+            if pane == .rules {
+                let rules = model.rules.file.rules
+                model.selectedRuleID = rules.indices.contains(ruleIndex - 1) ? rules[ruleIndex - 1].id : rules.first?.id
+            }
+            openSettings(pane)
+        }
+        if let url = pickURL {
+            if let p = pickPoint { CGWarpMouseCursorPosition(p) }
+            model.route(RouteRequest(url: url, sourceBundleID: pickSource))
+        }
+    }
+
+    static var hasLaunchArguments: Bool { pane != nil || pickURL != nil }
 
     static func argument(after flag: String) -> String? {
         let args = CommandLine.arguments
@@ -47,8 +90,9 @@ enum DemoMode {
     @MainActor
     static func targets() -> [BrowserTarget] {
         func make(_ id: TargetID, _ name: String, _ profile: String?, _ tint: RGB?) -> BrowserTarget {
+            // Not installed: a path that does not exist, so the tile shows the generic app icon.
             let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: id.app)
-                ?? URL(fileURLWithPath: "/Applications/Safari.app")
+                ?? URL(fileURLWithPath: "/Applications/\(name).app")
             return BrowserTarget(id: id, appName: name, profileName: profile, appURL: url, family: BrowserCatalog.family(of: id.app),
                                  launchProfile: id.profile, tint: tint, avatarURL: nil)
         }
