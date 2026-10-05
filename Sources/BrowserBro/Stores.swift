@@ -9,6 +9,8 @@ enum AppPaths {
         if let custom = ProcessInfo.processInfo.environment["BROWSERBRO_SUPPORT_DIR"], !custom.isEmpty {
             return URL(fileURLWithPath: custom)
         }
+        // Demo mode never touches the real rules and settings.
+        if DemoMode.isOn { return FileManager.default.temporaryDirectory.appending(path: "BrowserBro-demo") }
         return FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/Application Support/BrowserBro")
     }
     static var rulesFile: URL { supportDir.appending(path: "rules.json") }

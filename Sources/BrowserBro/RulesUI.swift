@@ -362,7 +362,7 @@ struct AppPickerSheet: View {
 
 struct TesterPane: View {
     @Bindable var model: AppModel
-    @State private var urlText = "https://"
+    @State private var urlText = DemoMode.testerURL ?? "https://"
     @State private var source = ""
     @State private var mods: ModifierSet = []
     @State private var picking = false

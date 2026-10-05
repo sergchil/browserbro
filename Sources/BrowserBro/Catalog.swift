@@ -155,6 +155,17 @@ final class BrowserCatalog {
     }
 
     func refresh() {
+        if DemoMode.isOn {
+            // Made-up browsers and profiles for screenshots: no real profile is read.
+            let demo = DemoMode.targets()
+            targets = demo
+            availableIDs = Set(demo.map(\.id) + demo.map { TargetID(app: $0.id.app) })
+            var seenApps: Set<String> = []
+            apps = demo.compactMap { t in
+                seenApps.insert(t.id.app).inserted ? (bundleID: t.id.app, name: t.appName, url: t.appURL) : nil
+            }
+            return
+        }
         let selfID = Bundle.main.bundleIdentifier ?? "com.sergchil.BrowserBro"
         let probe = URL(string: "https://example.com")!
         var seen: Set<String> = []

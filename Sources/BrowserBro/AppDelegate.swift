@@ -14,6 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     func applicationWillFinishLaunching(_ notification: Notification) {
         model = AppModel()
+        if DemoMode.isOn { DemoMode.prepare(model) }
         // Register before launch finishes, so the link that launched the app is not lost.
         NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(handleGetURL(_:reply:)),
                                                      forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
@@ -35,6 +36,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
         if SelfTest.requested {
             Task { await SelfTest(model: model).run() }
+            return
+        }
+        if DemoMode.isOn && DemoTour.requested {
+            Task { await DemoTour(model: model).run() }
             return
         }
         // First launch by hand (not by a link): show Settings so the user can set things up.
