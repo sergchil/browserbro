@@ -57,11 +57,6 @@
     });
   }
 
-  /* ───────────── Placeholder download links ───────────── */
-  document.querySelectorAll('[data-todo="download-url"]').forEach((a) => {
-    a.addEventListener('click', (e) => { if (a.getAttribute('href') === '#') { e.preventDefault(); location.hash = '#build'; } });
-  });
-
   /* ───────────── Copy buttons ───────────── */
   document.querySelectorAll('.copy').forEach((btn) => {
     btn.addEventListener('click', async () => {

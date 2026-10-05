@@ -49,14 +49,17 @@
         <li><a href="#profiles">Profiles</a></li>
         <li><a href="#keys">Keys</a></li>
         <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#build">Build</a></li>
+        <li><a href="#install">Install</a></li>
       </ul>
+      <a class="icon-link" href="https://github.com/sergchil/browserbro" aria-label="BrowserBro on GitHub" title="Source code on GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.8c-2.92.63-3.54-1.4-3.54-1.4-.48-1.22-1.17-1.54-1.17-1.54-.95-.65.07-.64.07-.64 1.06.07 1.61 1.09 1.61 1.09.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.2 0-1.15.41-2.08 1.08-2.82-.1-.27-.47-1.34.1-2.79 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.45.21 2.52.1 2.79.68.74 1.08 1.67 1.08 2.82 0 4.04-2.46 4.93-4.8 5.19.38.33.71.97.71 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5z"/></svg>
+      </a>
       <button class="theme-toggle" type="button" aria-label="Color theme: automatic" title="Switch color theme">
         <svg class="ic-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
         <svg class="ic-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
         <svg class="ic-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.3 8.3 0 0 1 9.4 4a8.3 8.3 0 1 0 10.6 10.6z" fill="currentColor"/></svg>
       </button>
-      <a class="btn btn-small btn-primary magnetic" href="#build">Get it</a>
+      <a class="btn btn-small btn-primary magnetic" href="#install">Download</a>
     </nav>
   </header>
 
@@ -68,10 +71,10 @@
         <h1 id="hero-title">Every link.<br><span class="grad">The right browser.</span></h1>
         <p class="lede">BrowserBro lives in your menu bar and becomes your default browser. It opens every link in the right <strong>browser and profile</strong> — by your rules, or with one key in a picker that opens right at your mouse pointer.</p>
         <div class="cta-row">
-          <a class="btn btn-primary magnetic" href="#build">Get BrowserBro</a>
-          <a class="btn btn-glass magnetic" href="#build">Build from source</a>
+          <a class="btn btn-primary magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip">Download for Mac</a>
+          <a class="btn btn-glass magnetic" href="#install">Other ways to install</a>
         </div>
-        <p class="fine">Native Swift app · 100% on-device · No account</p>
+        <p class="fine">Free · macOS 26 · Apple silicon · <a href="#first-open">First open: 3 quick steps</a></p>
       </div>
 
       <figure class="stage-wrap">
@@ -263,30 +266,50 @@
       </div>
     </section>
 
-    <!-- ───────────── Build ───────────── -->
-    <section class="section" id="build" aria-labelledby="build-title">
+    <!-- ───────────── Install ───────────── -->
+    <section class="section" id="install" aria-labelledby="install-title">
       <header class="sec-head reveal">
-        <p class="eyebrow">Build from source</p>
-        <h2 id="build-title">Free. Build it yourself.</h2>
-        <p class="sub">You need macOS 26 and Swift 6 (Xcode or the Command Line Tools). The script builds a release app and signs it ad-hoc — no paid developer account needed.</p>
+        <p class="eyebrow">Install</p>
+        <h2 id="install-title">Free. Ready in a minute.</h2>
+        <p class="sub">For macOS 26 (Tahoe) or later on a Mac with Apple silicon.</p>
       </header>
 
-      <div class="codes">
+      <div class="dl reveal">
+        <a class="btn btn-primary btn-big magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11m0 0-4.5-4.5M12 14.5l4.5-4.5M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download for Mac
+        </a>
+        <p class="fine">BrowserBro.zip, about 1 MB · Prefer a disk image? <a href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg">BrowserBro.dmg</a> · <a href="https://github.com/sergchil/browserbro/releases/latest">Release notes</a></p>
+      </div>
+
+      <div class="install-grid">
         <div class="code glass reveal">
-          <div class="code-bar"><span>Build <b>build/BrowserBro.app</b></span><button class="copy" type="button" data-copy="c1">Copy</button></div>
-          <pre id="c1"><code><span class="c"># in the BrowserBro source folder</span>
-scripts/build-app.sh</code></pre>
+          <div class="code-bar"><span><b>Homebrew</b> · no security prompt</span><button class="copy" type="button" data-copy="i1">Copy</button></div>
+          <pre id="i1"><code>brew install --cask sergchil/tap/browserbro</code></pre>
         </div>
         <div class="code glass reveal">
-          <div class="code-bar"><span>Build and install to <b>/Applications</b></span><button class="copy" type="button" data-copy="c2">Copy</button></div>
-          <pre id="c2"><code>scripts/build-app.sh --install</code></pre>
-        </div>
-        <div class="code glass reveal">
-          <div class="code-bar"><span>Run the tests</span><button class="copy" type="button" data-copy="c3">Copy</button></div>
-          <pre id="c3"><code>swift test</code></pre>
+          <div class="code-bar"><span><b>One line in Terminal</b> · no security prompt</span><button class="copy" type="button" data-copy="i2">Copy</button></div>
+          <pre id="i2"><code>curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/install.sh | bash</code></pre>
         </div>
       </div>
-      <p class="fine center reveal">A ready-made, signed download is coming later.</p>
+
+      <div class="first-open glass reveal" id="first-open">
+        <h3>Downloaded the app? The first open takes 3 steps.</h3>
+        <p class="fine">Unzip BrowserBro.zip and drag BrowserBro to your Applications folder. Then:</p>
+        <ol class="open-steps">
+          <li><span class="num">1</span><p>Open BrowserBro. macOS says it cannot verify the app. Click <b>Done</b> — not “Move to Trash”.</p></li>
+          <li><span class="num">2</span><p>Open <b>System Settings → Privacy &amp; Security</b>. Scroll down to <b>Security</b> and click <b>Open Anyway</b>. The button stays for about one hour.</p></li>
+          <li><span class="num">3</span><p>Enter your Mac password, then click <b>Open</b>. macOS remembers your choice.</p></li>
+        </ol>
+        <p class="note">Why the warning? BrowserBro is not notarized by Apple, because notarization costs $99 a year. The code is open — read it, or build it yourself. Right-click → Open no longer skips this check on recent macOS.</p>
+      </div>
+
+      <div class="code glass reveal from-source" id="build">
+        <div class="code-bar"><span><b>Build from source</b> · Xcode 26 or Swift 6.2</span><button class="copy" type="button" data-copy="c1">Copy</button></div>
+        <pre id="c1"><code>git clone https://github.com/sergchil/browserbro
+cd browserbro
+scripts/build-app.sh --install</code></pre>
+      </div>
     </section>
 
     <!-- ───────────── FAQ ───────────── -->
@@ -298,7 +321,11 @@ scripts/build-app.sh</code></pre>
       <div class="qa">
         <details class="glass reveal">
           <summary>Is BrowserBro free?</summary>
-          <p>Yes. It is free and MIT-licensed. You build it from source with one script.</p>
+          <p>Yes. It is free and MIT-licensed. Download it from GitHub, install it with Homebrew, or build it from source.</p>
+        </details>
+        <details class="glass reveal">
+          <summary>Why does macOS warn me the first time?</summary>
+          <p>BrowserBro is not notarized by Apple (that costs $99 a year). Click Done, then Open Anyway in System Settings → Privacy &amp; Security. Homebrew and the Terminal one-liner skip this step.</p>
         </details>
         <details class="glass reveal">
           <summary>Does it send my links anywhere?</summary>
@@ -328,6 +355,10 @@ scripts/build-app.sh</code></pre>
     <div class="foot-in">
       <a class="brand" href="#top"><img src="assets/favicon-64.png" alt="" width="24" height="24"><span>BrowserBro</span></a>
       <p>A native menu bar app for macOS 26. MIT License. 100% on-device.</p>
+      <a class="foot-gh" href="https://github.com/sergchil/browserbro">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.8c-2.92.63-3.54-1.4-3.54-1.4-.48-1.22-1.17-1.54-1.17-1.54-.95-.65.07-.64.07-.64 1.06.07 1.61 1.09 1.61 1.09.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.2 0-1.15.41-2.08 1.08-2.82-.1-.27-.47-1.34.1-2.79 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.45.21 2.52.1 2.79.68.74 1.08 1.67 1.08 2.82 0 4.04-2.46 4.93-4.8 5.19.38.33.71.97.71 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5z"/></svg>
+        <span>GitHub</span>
+      </a>
     </div>
   </footer>
 </body>

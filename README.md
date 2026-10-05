@@ -22,6 +22,38 @@ Website: https://sergchil.github.io/browserbro/
 
 macOS 26 (Tahoe) or later, Apple Silicon.
 
+## Install
+
+BrowserBro is free. Pick one way:
+
+**Homebrew** (no security prompt):
+
+```bash
+brew install --cask sergchil/tap/browserbro
+```
+
+Update later with `brew upgrade --cask browserbro`.
+
+**One line in Terminal** (no security prompt; run it again to update):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/install.sh | bash
+```
+
+It downloads the latest release, checks its SHA-256, installs to `/Applications` (or `~/Applications`), removes the quarantine flag and opens the app.
+
+**Download**: [BrowserBro.zip](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip) (or [BrowserBro.dmg](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg)) from [Releases](https://github.com/sergchil/browserbro/releases/latest). Unzip it and drag BrowserBro to Applications. The first time you open it:
+
+1. macOS says it cannot verify BrowserBro. Click **Done** (not "Move to Trash").
+2. Open **System Settings → Privacy & Security**, scroll down to **Security**, and click **Open Anyway**. The button stays for about one hour.
+3. Enter your Mac password, then click **Open**. macOS remembers your choice.
+
+Right-click → Open no longer skips this check on recent macOS. Shortcut for Terminal users: `xattr -dr com.apple.quarantine /Applications/BrowserBro.app`.
+
+Why the warning? BrowserBro is not notarized by Apple, because notarization costs $99 a year. The code is open: read it, or build it yourself.
+
+After installing, open BrowserBro Settings and click **Set as Default Browser…**.
+
 ## Build from source
 
 ```bash
@@ -37,6 +69,12 @@ Run the tests:
 ```bash
 swift test
 ```
+
+## Releasing
+
+Push a tag `vX.Y.Z`. The `Release` workflow (GitHub Actions, `macos-26` runner) runs the tests, builds the app with `scripts/make-dmg.sh` and publishes the ZIP, DMG and SHA-256 files to GitHub Releases. Then bump `version` and `sha256` in [sergchil/homebrew-tap](https://github.com/sergchil/homebrew-tap) `Casks/browserbro.rb`.
+
+Local build of the release files: `VERSION=1.0.0 scripts/make-dmg.sh` (output in `build/`).
 
 ## Project layout
 
