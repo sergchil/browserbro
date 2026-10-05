@@ -32,6 +32,8 @@
 	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>BrowserBro asks Arc to open links in the Space of the profile you picked.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

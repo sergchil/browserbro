@@ -280,6 +280,7 @@ private struct BrowserRow: View {
         switch target.family {
         case .chromium: "Chromium · one profile"
         case .gecko: "Firefox family · one profile"
+        case .arc: "Arc · one profile with a Space"
         case .safari: "Safari"
         case .other: target.isKnownBrowser ? "Browser" : "Not a known browser · hidden by default"
         }

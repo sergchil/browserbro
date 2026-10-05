@@ -6,6 +6,8 @@ import SQLite3
 enum BrowserFamily: String, Hashable, Sendable {
     case chromium
     case gecko
+    /// Arc: ignores command-line flags; a profile is reached through its Space (AppleScript).
+    case arc
     case safari
     case other
 
@@ -19,7 +21,7 @@ struct BrowserTarget: Identifiable, Hashable, Sendable {
     let profileName: String?
     let appURL: URL
     let family: BrowserFamily
-    /// Absolute path / directory name used when launching (Gecko: absolute profile path).
+    /// Absolute path / directory name used when launching (Gecko: absolute profile path, Arc: Space ID).
     let launchProfile: String?
     /// Profile color (sRGB 0…1), when the browser stores one.
     let tint: RGB?
@@ -95,9 +97,12 @@ enum KnownBrowsers {
         "net.waterfox.waterfox": "Waterfox",
     ]
 
+    /// Arc: profiles are opened through their Space with AppleScript, never with flags.
+    static let arc = "company.thebrowser.Browser"
+    static let arcDir = "Arc"
+
     /// Chromium-based apps where `--profile-directory` is not reliable: listed as browser only.
     static let chromiumWithoutProfileFlag: Set<String> = [
-        "company.thebrowser.Browser", // Arc
         "company.thebrowser.dia",     // Dia
         "com.operasoftware.Opera",
     ]
@@ -114,7 +119,7 @@ enum KnownBrowsers {
     ]
 
     static func isBrowser(_ id: String) -> Bool {
-        chromium[id] != nil || gecko[id] != nil || chromiumLike.contains(id) || otherBrowsers.contains(id)
+        chromium[id] != nil || gecko[id] != nil || id == arc || chromiumLike.contains(id) || otherBrowsers.contains(id)
     }
 
     static var supportDir: URL {
@@ -180,6 +185,8 @@ final class BrowserCatalog {
                 profiles = ChromiumProfiles.read(dataDir: KnownBrowsers.supportDir.appending(path: sub), app: id, name: name, url: url)
             } else if let sub = KnownBrowsers.gecko[id] {
                 profiles = GeckoProfiles.read(dataDir: KnownBrowsers.supportDir.appending(path: sub), app: id, name: name, url: url)
+            } else if id == KnownBrowsers.arc {
+                profiles = ArcProfiles.read(dataDir: KnownBrowsers.supportDir.appending(path: KnownBrowsers.arcDir), app: id, name: name, url: url)
             }
             if profiles.count > 1 {
                 list.append(contentsOf: profiles)
@@ -197,6 +204,7 @@ final class BrowserCatalog {
     }
 
     static func family(of bundleID: String) -> BrowserFamily {
+        if bundleID == KnownBrowsers.arc { return .arc }
         if KnownBrowsers.chromium[bundleID] != nil || KnownBrowsers.chromiumLike.contains(bundleID) { return .chromium }
         if KnownBrowsers.gecko[bundleID] != nil { return .gecko }
         if bundleID == "com.apple.Safari" || bundleID.hasPrefix("com.apple.SafariTechnologyPreview") { return .safari }
@@ -214,6 +222,11 @@ final class BrowserCatalog {
                 let base = KnownBrowsers.supportDir.appending(path: sub)
                 dirs.append(base)
                 dirs.append(base.appending(path: "Profile Groups"))
+            }
+            if app.bundleID == KnownBrowsers.arc {
+                let base = KnownBrowsers.supportDir.appending(path: KnownBrowsers.arcDir)
+                dirs.append(base)                              // StorableSidebar.json (Spaces)
+                dirs.append(base.appending(path: "User Data")) // Local State (profiles)
             }
         }
         for dir in Set(dirs) {
@@ -266,6 +279,21 @@ enum ChromiumProfiles {
             return BrowserTarget(id: TargetID(app: app, profile: dir), appName: name, profileName: profileName, appURL: url,
                                  family: .chromium, launchProfile: dir, tint: colorValue.map(RGB.init(argb:)),
                                  avatarURL: FileManager.default.fileExists(atPath: picture.path) ? picture : nil)
+        }
+    }
+}
+
+// MARK: - Arc profiles
+
+enum ArcProfiles {
+    /// Arc profiles from `User Data/Local State`, kept only when they have a Space (the only way to target one).
+    static func read(dataDir: URL, app: String, name: String, url: URL) -> [BrowserTarget] {
+        guard let data = try? Data(contentsOf: dataDir.appending(path: "StorableSidebar.json")) else { return [] }
+        let spaces = ArcSidebar.spaceIDsByProfile(json: data)
+        return ChromiumProfiles.read(dataDir: dataDir.appending(path: "User Data"), app: app, name: name, url: url).compactMap { p in
+            guard let dir = p.id.profile, let space = spaces[dir] else { return nil }
+            return BrowserTarget(id: p.id, appName: p.appName, profileName: p.profileName, appURL: p.appURL, family: .arc,
+                                 launchProfile: space, tint: p.tint, avatarURL: p.avatarURL)
         }
     }
 }

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "sidebar": {
+    "containers": [
+      { "littleBrowser": { "_0": "2CE48AD9-7BE5-4AF1-A23B-98F73A223B08" } },
+      {
+        "spaces": [
+          "LITTLE-1",
+          { "id": "LITTLE-1", "profile": { "custom": { "_0": { "directoryBasename": "Profile 3" } } } }
+        ],
+        "items": [],
+        "topAppsContainerIDs": []
+      },
+      { "global": {} },
+      {
+        "spaces": [
+          "WORK-1",
+          { "id": "WORK-1", "title": "Acme", "profile": { "custom": { "_0": { "directoryBasename": "Profile 2", "machineID": "X" } } } },
+          "PERSONAL-1",
+          { "id": "PERSONAL-1", "title": "Personal", "profile": { "default": true } },
+          "BIZ-1",
+          { "id": "BIZ-1", "title": null, "profile": { "custom": { "_0": { "machineID": "X", "directoryBasename": "Profile 3" } } } },
+          "PERSONAL-2",
+          { "id": "PERSONAL-2", "title": "Dev", "profile": { "default": true } },
+          "NO-PROFILE",
+          { "id": "NO-PROFILE", "title": "Odd" }
+        ],
+        "items": [],
+        "topAppsContainerIDs": []
+      }
+    ]
+  }
+}

@@ -366,3 +366,20 @@ struct CorpusTests {
         #expect(failures.isEmpty, "\(failures.count) failures:\n\(failures.prefix(20).joined(separator: "\n"))")
     }
 }
+
+// MARK: - Arc
+
+@Suite("Arc sidebar")
+struct ArcSidebarTests {
+    @Test("maps each profile to its first Space in the main window")
+    func spacesByProfile() throws {
+        let map = ArcSidebar.spaceIDsByProfile(json: try fixture("arc-sidebar.json"))
+        #expect(map == ["Profile 2": "WORK-1", "Default": "PERSONAL-1", "Profile 3": "BIZ-1"])
+    }
+
+    @Test("bad input gives an empty map")
+    func badInput() {
+        #expect(ArcSidebar.spaceIDsByProfile(json: Data("{}".utf8)).isEmpty)
+        #expect(ArcSidebar.spaceIDsByProfile(json: Data("not json".utf8)).isEmpty)
+    }
+}
