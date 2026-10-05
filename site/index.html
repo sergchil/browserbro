@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>BrowserBro — every link, in the right browser and profile</title>
-  <meta name="description" content="BrowserBro is a free, open-source macOS 26 menu bar app. It becomes your default browser and opens every link in the right browser and profile — by your rules, or with one key in a Liquid Glass picker at your pointer.">
+  <title>BrowserBro — open each link in the right browser and profile</title>
+  <meta name="description" content="A free, open-source macOS 26 menu bar app. It becomes your default browser and opens each link in the right browser and profile, by your rules or with one key.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0b10" media="(prefers-color-scheme: dark)">
@@ -12,14 +12,14 @@
   <link rel="canonical" href="https://sergchil.github.io/browserbro/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sergchil.github.io/browserbro/">
-  <meta property="og:title" content="BrowserBro — every link, in the right browser and profile">
-  <meta property="og:description" content="A free macOS 26 menu bar app that opens every link in the right browser and profile. Rules, a Liquid Glass picker at your pointer, 100% on-device.">
-  <meta property="og:image" content="https://sergchil.github.io/browserbro/assets/icon-512.png">
-  <meta property="og:image:alt" content="The BrowserBro app icon.">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="BrowserBro — every link, in the right browser and profile">
-  <meta name="twitter:description" content="A free macOS 26 menu bar app that opens every link in the right browser and profile. 100% on-device.">
-  <meta name="twitter:image" content="https://sergchil.github.io/browserbro/assets/icon-512.png">
+  <meta property="og:title" content="BrowserBro — open each link in the right browser and profile">
+  <meta property="og:description" content="A free macOS 26 menu bar app. Rules send each link to the right browser and profile. No rule? Pick with one key.">
+  <meta property="og:image" content="https://sergchil.github.io/browserbro/assets/media/hero-light-poster.png">
+  <meta property="og:image:alt" content="The BrowserBro picker over a chat window, with Safari, Chrome Work, Chrome Personal, Firefox, Arc and Brave.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BrowserBro — open each link in the right browser and profile">
+  <meta name="twitter:description" content="A free macOS 26 menu bar app. Rules send each link to the right browser and profile.">
+  <meta name="twitter:image" content="https://sergchil.github.io/browserbro/assets/media/hero-light-poster.png">
 
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -45,11 +45,8 @@
       </a>
       <ul class="nav-links">
         <li><a href="#how">How it works</a></li>
-        <li><a href="#rules">Rules</a></li>
-        <li><a href="#profiles">Profiles</a></li>
-        <li><a href="#keys">Keys</a></li>
-        <li><a href="#privacy">Privacy</a></li>
         <li><a href="#install">Install</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
       <a class="icon-link" href="https://github.com/sergchil/browserbro" aria-label="BrowserBro on GitHub" title="Source code on GitHub">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.8c-2.92.63-3.54-1.4-3.54-1.4-.48-1.22-1.17-1.54-1.17-1.54-.95-.65.07-.64.07-.64 1.06.07 1.61 1.09 1.61 1.09.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.2 0-1.15.41-2.08 1.08-2.82-.1-.27-.47-1.34.1-2.79 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.45.21 2.52.1 2.79.68.74 1.08 1.67 1.08 2.82 0 4.04-2.46 4.93-4.8 5.19.38.33.71.97.71 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5z"/></svg>
@@ -67,219 +64,79 @@
     <!-- ───────────── Hero ───────────── -->
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">For macOS 26 · Free · MIT license</p>
-        <h1 id="hero-title">Every link.<br><span class="grad">The right browser.</span></h1>
-        <p class="lede">BrowserBro lives in your menu bar and becomes your default browser. It opens every link in the right <strong>browser and profile</strong> — by your rules, or with one key in a picker that opens right at your mouse pointer.</p>
+        <h1 id="hero-title">BrowserBro</h1>
+        <p class="lede">For years my work links opened in my personal browser. So I made a small Mac app that sends each link to the right <strong>browser and profile</strong>.</p>
         <div class="cta-row">
-          <a class="btn btn-primary magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip">Download for Mac</a>
-          <a class="btn btn-glass magnetic" href="#install">Other ways to install</a>
+          <a class="btn btn-primary magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg">Download for Mac</a>
+          <a class="btn btn-glass magnetic" href="#install">Homebrew or Terminal</a>
         </div>
-        <p class="fine">Free · macOS 26 · Apple silicon · <a href="#first-open">First open: 3 quick steps</a></p>
+        <p class="fine">Free · MIT · macOS 26 · Apple silicon</p>
       </div>
 
-      <figure class="stage-wrap">
-        <div class="stage glass-deep" id="demo">
-          <p class="sr-only">Animation: a mouse pointer clicks a link in a chat window. The BrowserBro picker grows out of the pointer, a glass highlight glides across the browser tiles, and the link opens in Chrome, Work profile. Then a second link is routed by a rule and a small notice shows where it went.</p>
-          <div class="win" aria-hidden="true">
-            <div class="win-bar"><i></i><i></i><i></i><span>#design-review</span></div>
-            <div class="msg">
-              <span class="avatar alt">J</span>
-              <div>
-                <b>Jon</b>
-                <p>Morning! Review moved to 11:00.</p>
-              </div>
-            </div>
-            <div class="msg">
-              <span class="avatar">M</span>
-              <div>
-                <b>Maya</b>
-                <p>Spec for the new onboarding is here:<br><span class="demo-link" data-link="a">linear.app/acme/issue/ENG-142</span></p>
-              </div>
-            </div>
-            <div class="msg">
-              <span class="avatar alt">J</span>
-              <div>
-                <b>Jon</b>
-                <p>And the mockups: <span class="demo-link" data-link="b">figma.com/file/onboarding</span></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="drop" aria-hidden="true">
-            <div class="drop-head">
-              <svg viewBox="0 0 24 24" class="globe"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-              <div class="drop-host"><b>linear.app</b><span>https://linear.app/acme/issue/ENG-142</span></div>
-              <span class="drop-from">from Slack</span>
-            </div>
-            <div class="tiles">
-              <span class="lens"></span>
-              <div class="tile"><span class="bicon chrome"><em class="badge">W</em></span><b>Work</b><small>Chrome</small><kbd>1</kbd></div>
-              <div class="tile"><span class="bicon chrome"><em class="badge b2">P</em></span><b>Personal</b><small>Chrome</small><kbd>2</kbd></div>
-              <div class="tile"><span class="bicon safari"></span><b>Safari</b><small>&nbsp;</small><kbd>3</kbd></div>
-              <div class="tile"><span class="bicon firefox"><em class="badge b3">D</em></span><b>Dev</b><small>Firefox</small><kbd>4</kbd></div>
-              <div class="tile"><span class="bicon arc"><em class="badge b4">S</em></span><b>Side</b><small>Arc</small><kbd>5</kbd></div>
-            </div>
-            <div class="drop-foot">
-              <span class="chip"><i class="dot"></i>Always open linear.app here <span class="k">⇥</span></span>
-              <span class="chip-row"><span class="chip">⌥ private</span><span class="chip">⌘C copy</span><span class="chip">esc</span></span>
-            </div>
-          </div>
-
-          <div class="pulse" aria-hidden="true">
-            <span class="arr">↳</span><span class="bicon chrome mini"><em class="badge">W</em></span><span>Chrome · Work</span><span class="chev">›</span>
-          </div>
-
-          <div class="keyhint" aria-hidden="true"><kbd>→</kbd></div>
-
-          <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.8v16.9l4.2-4.1 2.7 6.2 2.9-1.2-2.7-6.1h5.9z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        </div>
-        <figcaption>A recreation of the picker. It opens at the pointer, and tile 1 sits right under it.</figcaption>
+      <figure class="hero-media">
+        <video class="on-light" muted loop playsinline preload="metadata" width="1020" height="640" poster="assets/media/hero-light-poster.png" aria-describedby="hero-cap">
+          <source src="assets/media/hero-light.mp4" type="video/mp4">
+        </video>
+        <video class="on-dark" muted loop playsinline preload="metadata" width="1020" height="640" poster="assets/media/hero-dark-poster.png" aria-describedby="hero-cap">
+          <source src="assets/media/hero-dark.mp4" type="video/mp4">
+        </video>
+        <figcaption id="hero-cap">The real app: click a link, the picker opens at the pointer, pick Chrome · Work.</figcaption>
       </figure>
     </section>
 
     <!-- ───────────── How it works ───────────── -->
     <section class="section" id="how" aria-labelledby="how-title">
       <header class="sec-head reveal">
-        <p class="eyebrow">How it works</p>
-        <h2 id="how-title">Click a link. Land in the right place.</h2>
+        <h2 id="how-title">How it works</h2>
       </header>
       <ol class="steps">
         <li class="step glass reveal">
-          <span class="num">1</span>
-          <h3>Make it your default browser</h3>
-          <p>BrowserBro sits quietly in the menu bar. macOS hands it the links you click in other apps — mail, chat, notes.</p>
+          <div class="step-head"><span class="num">1</span><h3>Click a link</h3></div>
+          <p>No rule yet? The picker opens at your pointer. Press a number.</p>
+          <figure class="shot">
+            <img class="on-light" src="assets/media/keys-light.png" width="1508" height="652" loading="lazy" alt="The picker: Safari, Chrome Work, Chrome Personal, Firefox Side project, Arc Work and Brave.">
+            <img class="on-dark" src="assets/media/keys-dark.png" width="1508" height="652" loading="lazy" alt="The picker: Safari, Chrome Work, Chrome Personal, Firefox Side project, Arc Work and Brave.">
+          </figure>
         </li>
         <li class="step glass reveal">
-          <span class="num">2</span>
-          <h3>A rule decides</h3>
-          <p>Your rules run top to bottom; the first match wins. The link opens in that browser and profile, and a small glass <em>Pulse</em> at your pointer shows where it went. Click the Pulse to open it somewhere else.</p>
+          <div class="step-head"><span class="num">2</span><h3>Add a rule</h3></div>
+          <p>*.acme.com → Chrome · Work. Next time the link just opens there.</p>
+          <figure class="shot">
+            <img class="on-light" src="assets/media/rules-light.png" width="2152" height="1392" loading="lazy" alt="Settings, Rules: three rules and the editor for the Work tools rule.">
+            <img class="on-dark" src="assets/media/rules-dark.png" width="2152" height="1392" loading="lazy" alt="Settings, Rules: three rules and the editor for the Work tools rule.">
+          </figure>
         </li>
         <li class="step glass reveal">
-          <span class="num">3</span>
-          <h3>Or you pick, with one key</h3>
-          <p>No rule? The picker opens at your pointer, with the first browser right under it. Press <kbd>1</kbd>–<kbd>9</kbd>, or click. Several links at once wait politely in a queue.</p>
+          <div class="step-head"><span class="num">3</span><h3>Check it</h3></div>
+          <p>Paste a link in the Tester. It shows which rule wins and why.</p>
+          <figure class="shot">
+            <img class="on-light" src="assets/media/tester-light.png" width="2152" height="1392" loading="lazy" alt="Tester: the URL wiki.acme.com opens in Chrome Work, by the rule Work tools.">
+            <img class="on-dark" src="assets/media/tester-dark.png" width="2152" height="1392" loading="lazy" alt="Tester: the URL wiki.acme.com opens in Chrome Work, by the rule Work tools.">
+          </figure>
         </li>
       </ol>
-    </section>
-
-    <!-- ───────────── Rules ───────────── -->
-    <section class="section rules" id="rules" aria-labelledby="rules-title">
-      <div class="split">
-        <header class="sec-head reveal">
-          <p class="eyebrow">Rules</p>
-          <h2 id="rules-title">Rules that read like a sentence.</h2>
-          <p class="sub">Match on what you know about a link — where it points, which app it came from, which key you held. Combine conditions with <b>all</b> or <b>any</b>, flip one with <b>NOT</b>.</p>
-        </header>
-
-        <div class="builder glass-deep reveal" id="builder">
-          <p class="sr-only">Example rules cycle here, for example: when the domain is linear.app, open in Chrome, profile Work.</p>
-          <div class="sentence" aria-hidden="true">
-            <span class="w">When</span>
-            <span class="slot s-mode">any</span>
-            <span class="w">match:</span>
-            <span class="line">
-              <span class="slot s-kind">Domain</span>
-              <span class="slot s-not">NOT</span>
-              <span class="slot s-val mono">linear.app</span>
-            </span>
-            <span class="line">
-              <span class="w">open in</span>
-              <span class="slot s-target"><span class="bicon chrome mini"></span><span class="t">Chrome · Work</span></span>
-            </span>
-          </div>
-          <div class="tester" aria-hidden="true">
-            <span class="tlabel">Tester</span>
-            <span class="mono turl">https://linear.app/acme/issue/ENG-142</span>
-            <span class="tok">✓ matches</span>
-          </div>
-        </div>
-      </div>
-
-      <ul class="facts reveal" aria-label="Rule features">
-        <li><b>8 kinds of match</b><span>Domain, host, path prefix, URL contains, wildcard, regex, source app, modifier key.</span></li>
-        <li><b>First match wins</b><span>Order is the priority. Drag to reorder.</span></li>
-        <li><b>Conflict warnings</b><span>BrowserBro flags rules that shadow or fight each other.</span></li>
-        <li><b>Built-in Tester</b><span>Paste a URL and see which rule fires, and why.</span></li>
-        <li><b>Plain <code>rules.json</code></b><span>Human-editable, so you can read it, diff it and back it up.</span></li>
+      <ul class="keyrow reveal" aria-label="Picker keys">
+        <li><kbd>1</kbd>–<kbd>9</kbd> open</li>
+        <li><kbd>⌥</kbd> private</li>
+        <li><kbd>Tab</kbd> always here</li>
+        <li><kbd>⌘</kbd><kbd>C</kbd> copy</li>
+        <li><kbd>Esc</kbd> cancel</li>
       </ul>
-    </section>
-
-    <!-- ───────────── Profiles ───────────── -->
-    <section class="section" id="profiles" aria-labelledby="profiles-title">
-      <header class="sec-head reveal">
-        <p class="eyebrow">Browsers &amp; profiles</p>
-        <h2 id="profiles-title">Not just the browser. <span class="grad">The profile.</span></h2>
-        <p class="sub">Work links in the work profile, personal links in yours. BrowserBro finds your profiles and turns each one into a target.</p>
-      </header>
-
-      <div class="profiles">
-        <article class="pcard glass reveal">
-          <div class="icons"><span class="bicon chrome"></span><span class="bicon brave"></span><span class="bicon edge"></span><span class="bicon vivaldi"></span></div>
-          <h3>Chrome, Brave, Edge, Vivaldi</h3>
-          <p>Each profile opens via its profile folder.</p>
-        </article>
-        <article class="pcard glass reveal">
-          <div class="icons"><span class="bicon firefox"></span><span class="bicon zen"></span><span class="bicon librewolf"></span></div>
-          <h3>Firefox, Zen, LibreWolf</h3>
-          <p>Each profile opens via its Firefox-style profile.</p>
-        </article>
-        <article class="pcard glass reveal">
-          <div class="icons"><span class="bicon arc"></span></div>
-          <h3>Arc</h3>
-          <p>Profiles open through their Spaces.</p>
-        </article>
-        <article class="pcard glass reveal">
-          <div class="icons"><span class="bicon safari"></span></div>
-          <h3>Safari</h3>
-          <p>Supported as a browser target.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ───────────── Keys ───────────── -->
-    <section class="section" id="keys" aria-labelledby="keys-title">
-      <header class="sec-head reveal">
-        <p class="eyebrow">Keyboard</p>
-        <h2 id="keys-title">Your hands never leave the keys.</h2>
-      </header>
-      <dl class="keys">
-        <div class="key glass reveal"><dt><kbd class="cap">1</kbd><span class="dash">–</span><kbd class="cap">9</kbd></dt><dd>Open in that target</dd></div>
-        <div class="key glass reveal"><dt><kbd class="cap">←</kbd><kbd class="cap">→</kbd><kbd class="cap wide">return</kbd></dt><dd>Move the lens, then open</dd></div>
-        <div class="key glass reveal"><dt><kbd class="cap">⌥</kbd></dt><dd>Hold for a private window</dd></div>
-        <div class="key glass reveal"><dt><kbd class="cap wide">tab</kbd></dt><dd>Always open this site here</dd></div>
-        <div class="key glass reveal"><dt><kbd class="cap">⌘</kbd><kbd class="cap">C</kbd></dt><dd>Copy the link</dd></div>
-        <div class="key glass reveal"><dt><kbd class="cap wide">esc</kbd></dt><dd>Cancel — the link stays closed</dd></div>
-      </dl>
-    </section>
-
-    <!-- ───────────── Privacy ───────────── -->
-    <section class="section privacy" id="privacy" aria-labelledby="privacy-title">
-      <div class="privacy-card glass-deep reveal">
-        <p class="eyebrow">Privacy</p>
-        <h2 id="privacy-title">100% on-device.<br><span class="grad">Nothing leaves your Mac.</span></h2>
-        <ul class="nos">
-          <li><span class="x" aria-hidden="true">✕</span>No network calls</li>
-          <li><span class="x" aria-hidden="true">✕</span>No accounts</li>
-          <li><span class="x" aria-hidden="true">✕</span>No analytics</li>
-        </ul>
-        <p class="sub">Your links are your business. BrowserBro reads a URL, matches it against your local rules, and hands it to a browser. That is all it does. The code is MIT-licensed.</p>
-      </div>
     </section>
 
     <!-- ───────────── Install ───────────── -->
     <section class="section" id="install" aria-labelledby="install-title">
       <header class="sec-head reveal">
-        <p class="eyebrow">Install</p>
-        <h2 id="install-title">Free. Ready in a minute.</h2>
-        <p class="sub">For macOS 26 (Tahoe) or later on a Mac with Apple silicon.</p>
+        <h2 id="install-title">Install</h2>
+        <p class="sub">Free. macOS 26 (Tahoe) or later, Apple silicon.</p>
       </header>
 
       <div class="dl reveal">
-        <a class="btn btn-primary btn-big magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip">
+        <a class="btn btn-primary btn-big magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11m0 0-4.5-4.5M12 14.5l4.5-4.5M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Download for Mac
         </a>
-        <p class="fine">BrowserBro.zip, about 1 MB · Prefer a disk image? <a href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg">BrowserBro.dmg</a> · <a href="https://github.com/sergchil/browserbro/releases/latest">Release notes</a></p>
+        <p class="fine">BrowserBro.dmg · Prefer a ZIP? <a href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip">BrowserBro.zip</a> · <a href="https://github.com/sergchil/browserbro/releases/latest">Release notes</a></p>
       </div>
 
       <div class="install-grid">
@@ -295,57 +152,37 @@
 
       <div class="first-open glass reveal" id="first-open">
         <h3>Downloaded the app? The first open takes 3 steps.</h3>
-        <p class="fine">Unzip BrowserBro.zip and drag BrowserBro to your Applications folder. Then:</p>
+        <p class="fine">Drag BrowserBro to your Applications folder. Then:</p>
         <ol class="open-steps">
-          <li><span class="num">1</span><p>Open BrowserBro. macOS says it cannot verify the app. Click <b>Done</b> — not “Move to Trash”.</p></li>
-          <li><span class="num">2</span><p>Open <b>System Settings → Privacy &amp; Security</b>. Scroll down to <b>Security</b> and click <b>Open Anyway</b>. The button stays for about one hour.</p></li>
+          <li><span class="num">1</span><p>Open BrowserBro. macOS says it cannot verify the app. Click <b>Done</b>, not “Move to Trash”.</p></li>
+          <li><span class="num">2</span><p>Open <b>System Settings → Privacy &amp; Security</b>. Scroll to <b>Security</b> and click <b>Open Anyway</b>.</p></li>
           <li><span class="num">3</span><p>Enter your Mac password, then click <b>Open</b>. macOS remembers your choice.</p></li>
         </ol>
-        <p class="note">Why the warning? BrowserBro is not notarized by Apple, because notarization costs $99 a year. The code is open — read it, or build it yourself. Right-click → Open no longer skips this check on recent macOS.</p>
-      </div>
-
-      <div class="code glass reveal from-source" id="build">
-        <div class="code-bar"><span><b>Build from source</b> · Xcode 26 or Swift 6.2</span><button class="copy" type="button" data-copy="c1">Copy</button></div>
-        <pre id="c1"><code>git clone https://github.com/sergchil/browserbro
-cd browserbro
-scripts/build-app.sh --install</code></pre>
+        <p class="note">Then open BrowserBro Settings and click <b>Set as Default Browser…</b></p>
       </div>
     </section>
 
     <!-- ───────────── FAQ ───────────── -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <header class="sec-head reveal">
-        <p class="eyebrow">FAQ</p>
-        <h2 id="faq-title">Questions, answered.</h2>
+        <h2 id="faq-title">FAQ</h2>
       </header>
       <div class="qa">
         <details class="glass reveal">
-          <summary>Is BrowserBro free?</summary>
-          <p>Yes. It is free and MIT-licensed. Download it from GitHub, install it with Homebrew, or build it from source.</p>
-        </details>
-        <details class="glass reveal">
           <summary>Why does macOS warn me the first time?</summary>
-          <p>BrowserBro is not notarized by Apple (that costs $99 a year). Click Done, then Open Anyway in System Settings → Privacy &amp; Security. Homebrew and the Terminal one-liner skip this step.</p>
+          <p>The app is not notarized by Apple (that costs $99 a year). Homebrew and the Terminal line skip the warning. The code is open: read it, or <a href="https://github.com/sergchil/browserbro#readme">build it yourself</a>.</p>
         </details>
         <details class="glass reveal">
           <summary>Does it send my links anywhere?</summary>
-          <p>No. BrowserBro makes no network calls, has no accounts and no analytics. Everything happens on your Mac.</p>
-        </details>
-        <details class="glass reveal">
-          <summary>What happens when no rule matches?</summary>
-          <p>The picker opens at your mouse pointer, with the first browser right under it. Press a number, use the arrows and Return, or click. <kbd>Esc</kbd> cancels.</p>
-        </details>
-        <details class="glass reveal">
-          <summary>Can I edit my rules by hand?</summary>
-          <p>Yes. Rules live in a human-editable file: <code>~/Library/Application Support/BrowserBro/rules.json</code>.</p>
+          <p>No. No network calls, no accounts, no analytics. Everything stays on your Mac.</p>
         </details>
         <details class="glass reveal">
           <summary>Which browsers work with profiles?</summary>
-          <p>Chrome, Brave, Edge and Vivaldi (via the profile folder); Firefox, Zen and LibreWolf (via the profile); Arc (via Spaces). Safari works as a browser.</p>
+          <p>Chrome, Brave, Edge, Vivaldi, Firefox, Zen, LibreWolf and Arc (through Spaces). Safari works as a browser.</p>
         </details>
         <details class="glass reveal">
-          <summary>How do I open a link in a private window?</summary>
-          <p>Hold <kbd>⌥</kbd> when you choose a target in the picker.</p>
+          <summary>Where are my rules?</summary>
+          <p>In a plain file you can read and back up: <code>~/Library/Application Support/BrowserBro/rules.json</code>.</p>
         </details>
       </div>
     </section>
@@ -354,7 +191,7 @@ scripts/build-app.sh --install</code></pre>
   <footer class="foot">
     <div class="foot-in">
       <a class="brand" href="#top"><img src="assets/favicon-64.png" alt="" width="24" height="24"><span>BrowserBro</span></a>
-      <p>A native menu bar app for macOS 26. MIT License. 100% on-device.</p>
+      <p>Free and open source. MIT license.</p>
       <a class="foot-gh" href="https://github.com/sergchil/browserbro">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.8c-2.92.63-3.54-1.4-3.54-1.4-.48-1.22-1.17-1.54-1.17-1.54-.95-.65.07-.64.07-.64 1.06.07 1.61 1.09 1.61 1.09.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.2 0-1.15.41-2.08 1.08-2.82-.1-.27-.47-1.34.1-2.79 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.45.21 2.52.1 2.79.68.74 1.08 1.67 1.08 2.82 0 4.04-2.46 4.93-4.8 5.19.38.33.71.97.71 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5z"/></svg>
         <span>GitHub</span>

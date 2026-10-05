@@ -1,91 +1,123 @@
+<div align="center">
+
+<img src="site/assets/icon-512.png" width="112" alt="BrowserBro icon">
+
 # BrowserBro
 
-Open every link in the right browser **and profile** on macOS.
+**Every link opens in the right browser and profile.**
 
-BrowserBro is a small menu bar app that becomes your default browser. When you click a link anywhere on your Mac:
+[![Release](https://img.shields.io/github/v/release/sergchil/browserbro?label=release)](https://github.com/sergchil/browserbro/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/sergchil/browserbro/total)](https://github.com/sergchil/browserbro/releases)
+![macOS 26+](https://img.shields.io/badge/macOS-26%2B-black?logo=apple)
+[![License: MIT](https://img.shields.io/github/license/sergchil/browserbro)](LICENSE)
 
-- if one of your rules matches, the link opens right away in the browser and profile you chose;
-- if not, a Liquid Glass picker opens **at your mouse pointer**: press `1`–`9` (or click) to choose.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/hero-dark.gif">
+  <img src="docs/media/hero-light.gif" width="760" alt="A link is clicked in a chat. The BrowserBro picker opens at the pointer, and the link opens in Chrome, Work profile.">
+</picture>
 
-Website: https://sergchil.github.io/browserbro/
+[Website](https://sergchil.github.io/browserbro/) · [Download](https://github.com/sergchil/browserbro/releases/latest)
 
-## Features
+</div>
 
-- Rules by domain, host, path, URL text, wildcard, regex, the app you clicked in, or a held key. Combine with all / any / NOT. First match wins.
-- Conflict warnings and a built-in tester that explains which rule wins and why.
-- Profiles: Chrome, Brave, Edge, Vivaldi, Chromium (profile folders), Firefox, Zen, LibreWolf, Waterfox (profiles), Arc (via Spaces). Safari as a browser.
-- Picker keys: `1`–`9`, arrows + `Return`, `Esc`, `⌥` = private window, `Tab` = "always open this site here", `⌘C` = copy link.
-- Rules live in a readable file: `~/Library/Application Support/BrowserBro/rules.json`.
-- Private: no network calls, no accounts, no analytics.
+## The problem
 
-## Requirements
+You click a work link. It opens in your personal browser. Again.
 
-macOS 26 (Tahoe) or later, Apple Silicon.
+BrowserBro becomes your default browser. A rule sends each link to the right browser and profile. No rule? A picker opens at your pointer. Press a number.
 
 ## Install
 
-BrowserBro is free. Pick one way:
+| | |
+|---|---|
+| 🍺 Homebrew | `brew install --cask sergchil/tap/browserbro` |
+| ⚡ Terminal | `curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/install.sh \| bash` |
+| 📦 Download | [BrowserBro.dmg](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg) · [BrowserBro.zip](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip) |
 
-**Homebrew** (no security prompt):
+macOS 26 or later, Apple silicon. Then open Settings and click **Set as Default Browser…**
 
-```bash
-brew install --cask sergchil/tap/browserbro
-```
+<details>
+<summary>Downloaded it? First open takes 3 steps</summary>
 
-Update later with `brew upgrade --cask browserbro`.
+1. macOS says it cannot verify BrowserBro. Click **Done**.
+2. Open **System Settings → Privacy & Security** and click **Open Anyway**.
+3. Enter your password and click **Open**.
 
-**One line in Terminal** (no security prompt; run it again to update):
+Why: the app is not notarized (Apple charges $99 a year). Homebrew and the Terminal line skip this.
+</details>
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/install.sh | bash
-```
+## Tour
 
-It downloads the latest release, checks its SHA-256, installs to `/Applications` (or `~/Applications`), removes the quarantine flag and opens the app.
+<table>
+<tr>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/rules-dark.png">
+  <img src="docs/media/rules-light.png" alt="Settings, Rules: three rules and the rule editor.">
+</picture>
+<b>Rules.</b> Domain, wildcard, regex, source app, held key. First match wins.
+</td>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/tester-dark.png">
+  <img src="docs/media/tester-light.png" alt="Tester: a URL, the winning rule and the trace of every rule.">
+</picture>
+<b>Tester.</b> Paste a link, see which rule wins and why.
+</td>
+</tr>
+<tr>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/keys-dark.png">
+  <img src="docs/media/keys-light.png" alt="The picker with private mode and Always open here turned on.">
+</picture>
+<b>Profiles.</b> Chrome, Brave, Edge, Vivaldi, Firefox, Zen, Arc, Safari.
+</td>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/pulse-dark.gif">
+  <img src="docs/media/pulse-light.gif" alt="A small notice next to the pointer shows where the link went.">
+</picture>
+<b>Pulse.</b> A rule fired? A tiny note shows where the link went.
+</td>
+</tr>
+</table>
 
-**Download**: [BrowserBro.zip](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip) (or [BrowserBro.dmg](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg)) from [Releases](https://github.com/sergchil/browserbro/releases/latest). Unzip it and drag BrowserBro to Applications. The first time you open it:
+## Keys
 
-1. macOS says it cannot verify BrowserBro. Click **Done** (not "Move to Trash").
-2. Open **System Settings → Privacy & Security**, scroll down to **Security**, and click **Open Anyway**. The button stays for about one hour.
-3. Enter your Mac password, then click **Open**. macOS remembers your choice.
+| Key | In the picker |
+|---|---|
+| <kbd>1</kbd>–<kbd>9</kbd> | Open there |
+| <kbd>←</kbd> <kbd>→</kbd> <kbd>Return</kbd> | Move, then open |
+| <kbd>⌥</kbd> | Private window |
+| <kbd>Tab</kbd> | Always open this site here |
+| <kbd>⌘</kbd><kbd>C</kbd> | Copy the link |
+| <kbd>Esc</kbd> | Never mind |
 
-Right-click → Open no longer skips this check on recent macOS. Shortcut for Terminal users: `xattr -dr com.apple.quarantine /Applications/BrowserBro.app`.
+**Bro tip:** your rules live in `~/Library/Application Support/BrowserBro/rules.json`. Back it up.
 
-Why the warning? BrowserBro is not notarized by Apple, because notarization costs $99 a year. The code is open: read it, or build it yourself.
+<details>
+<summary>Build from source</summary>
 
-After installing, open BrowserBro Settings and click **Set as Default Browser…**.
-
-## Build from source
+Needs Xcode 26 or Swift 6.2. No paid Apple account.
 
 ```bash
 git clone https://github.com/sergchil/browserbro.git
 cd browserbro
-scripts/build-app.sh --install   # builds, ad-hoc signs, copies to /Applications
-```
-
-You need Xcode 26+ or the Command Line Tools with Swift 6.2+. No paid Apple Developer account is needed.
-
-Run the tests:
-
-```bash
+scripts/build-app.sh --install   # build, ad-hoc sign, copy to /Applications
 swift test
 ```
 
-## Releasing
-
-Push a tag `vX.Y.Z`. The `Release` workflow (GitHub Actions, `macos-26` runner) runs the tests, builds the app with `scripts/make-dmg.sh` and publishes the ZIP, DMG and SHA-256 files to GitHub Releases. Then bump `version` and `sha256` in [sergchil/homebrew-tap](https://github.com/sergchil/homebrew-tap) `Casks/browserbro.rb`.
-
-Local build of the release files: `VERSION=1.0.0 scripts/make-dmg.sh` (output in `build/`).
-
-## Project layout
-
 | Path | What |
 |---|---|
-| `Sources/RoutingCore` | Rule model, matching engine, conflict checks (pure Swift, fully tested) |
-| `Sources/BrowserBro` | The app: link intake, browser catalog, launcher, picker, settings |
-| `Sources/bro` | `bro test <url>` command-line rule tester |
-| `site/` | Product page (GitHub Pages) |
-| `PRD.md`, `DESIGN.md`, `ROADMAP.md`, `RESEARCH.md` | Product and design docs |
+| `Sources/RoutingCore` | Rules and matching |
+| `Sources/BrowserBro` | The app |
+| `Sources/bro` | `bro test <url>` CLI |
+| `site/` | Website |
 
-## License
+Release: push a tag `vX.Y.Z`. The `Release` workflow publishes the DMG and ZIP. Then bump the cask in [sergchil/homebrew-tap](https://github.com/sergchil/homebrew-tap).
+</details>
 
-MIT, see [LICENSE](LICENSE).
+<div align="center">
+<sub>No network calls, no accounts, no analytics. <a href="LICENSE">MIT</a>. Built because the wrong browser kept winning. 🤙</sub>
+</div>
