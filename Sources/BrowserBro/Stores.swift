@@ -205,7 +205,16 @@ enum SystemIntegration {
             settings.settings.previousDefaultBrowser = current.path
         }
         for scheme in ["http", "https"] {
-            try await NSWorkspace.shared.setDefaultApplication(at: Bundle.main.bundleURL, toOpenURLsWithScheme: scheme)
+            do {
+                try await NSWorkspace.shared.setDefaultApplication(at: Bundle.main.bundleURL, toOpenURLsWithScheme: scheme)
+            } catch {
+                // macOS asks once for both schemes; the second call can report an error even though it worked.
+                // Trust the real state, not the error.
+                Log.app.notice("setDefaultApplication(\(scheme, privacy: .public)) reported: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+        if !isDefaultBrowser {
+            throw LaunchError(message: "macOS did not make BrowserBro the default browser. You can also set it in System Settings → Desktop & Dock → Default web browser.")
         }
     }
 
