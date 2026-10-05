@@ -196,7 +196,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1020, height: 680),
                              styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView], backing: .buffered, defer: false)
             w.title = "BrowserBro"
-            w.titlebarAppearsTransparent = true
             w.toolbarStyle = .unified
             w.contentViewController = NSHostingController(rootView: SettingsView(model: model))
             w.setContentSize(NSSize(width: 1020, height: 680))

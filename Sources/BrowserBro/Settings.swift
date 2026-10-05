@@ -63,7 +63,7 @@ struct GeneralPane: View {
                 HStack {
                     Label(model.isDefaultBrowser ? "BrowserBro is your default browser." : "BrowserBro is not your default browser yet.",
                           systemImage: model.isDefaultBrowser ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
-                        .foregroundStyle(model.isDefaultBrowser ? AnyShapeStyle(.green) : AnyShapeStyle(.orange))
+                        .symbolRenderingMode(.multicolor)
                     Spacer()
                     if model.isDefaultBrowser {
                         if let prev = model.settings.settings.previousDefaultBrowser {
@@ -78,7 +78,9 @@ struct GeneralPane: View {
                         .buttonStyle(.borderedProminent)
                     }
                 }
-                if let errorText { Text(errorText).foregroundStyle(.red).font(.callout) }
+                if let errorText {
+                    Label(errorText, systemImage: "xmark.octagon.fill").symbolRenderingMode(.multicolor).font(.callout)
+                }
                 Text("macOS asks you to confirm. Links you click in any app then come to BrowserBro first.")
                     .font(.callout).foregroundStyle(.secondary)
             }
@@ -121,7 +123,7 @@ struct GeneralPane: View {
                 }
                 if let err = model.rules.loadError {
                     Label("The rules file has an error, so the last good rules are still used: \(err)", systemImage: "xmark.octagon.fill")
-                        .foregroundStyle(.red)
+                        .symbolRenderingMode(.multicolor)
                 }
                 HStack {
                     Button("Import Rules…") { importRules() }

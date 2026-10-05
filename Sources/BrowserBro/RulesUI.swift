@@ -31,15 +31,10 @@ struct RulesPane: View {
                     }
                 }
                 Divider()
-                HStack(spacing: 4) {
-                    Button { add() } label: { Image(systemName: "plus") }.help("Add rule")
-                    Button { if let id = model.selectedRuleID { delete(id) } } label: { Image(systemName: "minus") }
-                        .disabled(model.selectedRuleID == nil).help("Delete rule")
-                    Spacer()
-                    Text("First match wins. Drag to reorder.").font(.caption).foregroundStyle(.secondary)
-                }
-                .buttonStyle(.borderless)
-                .padding(8)
+                Text("First match wins. Drag to reorder.")
+                    .font(.caption).foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(8)
             }
             .frame(width: 300)
             Divider()
@@ -56,7 +51,13 @@ struct RulesPane: View {
         }
         .navigationTitle("Rules")
         .toolbar {
-            Button { add() } label: { Label("Add Rule", systemImage: "plus") }
+            ToolbarItemGroup {
+                Button { add() } label: { Label("Add Rule", systemImage: "plus") }
+                    .help("Add rule")
+                Button { if let id = model.selectedRuleID { delete(id) } } label: { Label("Delete Rule", systemImage: "minus") }
+                    .disabled(model.selectedRuleID == nil)
+                    .help("Delete rule")
+            }
         }
     }
 
@@ -105,7 +106,7 @@ private struct RuleRow: View {
             Spacer()
             if let w = warnings.first {
                 Image(systemName: w.isError ? "xmark.octagon.fill" : "exclamationmark.triangle.fill")
-                    .foregroundStyle(w.isError ? .red : .orange)
+                    .symbolRenderingMode(.multicolor)
                     .help(w.message)
             }
             Toggle("Enabled", isOn: Binding(get: { rule.enabled }, set: { v in
@@ -161,7 +162,8 @@ struct RuleEditor: View {
                 Button { rule.wrappedValue.conditions.append(Condition(.domain, "")) } label: { Label("Add condition", systemImage: "plus.circle") }
                     .buttonStyle(.borderless)
                 if rule.wrappedValue.conditions.isEmpty {
-                    Text("No conditions: this rule matches every link.").font(.callout).foregroundStyle(.orange)
+                    Label("No conditions: this rule matches every link.", systemImage: "exclamationmark.triangle.fill")
+                        .symbolRenderingMode(.multicolor).font(.callout)
                 }
             } header: {
                 Text("Conditions")
@@ -180,7 +182,7 @@ struct RuleEditor: View {
                 Section {
                     ForEach(warnings) { w in
                         Label(w.message, systemImage: w.isError ? "xmark.octagon.fill" : "exclamationmark.triangle.fill")
-                            .foregroundStyle(w.isError ? .red : .orange)
+                            .symbolRenderingMode(.multicolor)
                     }
                 }
             }
@@ -191,7 +193,8 @@ struct RuleEditor: View {
                     let ok = RoutingEngine.ruleMatches(rule.wrappedValue, RouteRequest(url: url))
                     Label(ok ? "This rule matches (sender unknown, no keys held)." : "This rule does not match.",
                           systemImage: ok ? "checkmark.circle.fill" : "xmark.circle")
-                        .foregroundStyle(ok ? .green : .secondary)
+                        .symbolRenderingMode(ok ? .multicolor : .monochrome)
+                        .foregroundStyle(ok ? .primary : .secondary)
                     Text("Use the Tester to check a sender app, keys, and rule order.").font(.caption).foregroundStyle(.secondary)
                 }
             }
@@ -396,7 +399,8 @@ struct TesterPane: View {
                         HStack(alignment: .firstTextBaseline, spacing: 8) {
                             Text("\(r.index)").font(.caption.monospacedDigit()).foregroundStyle(.secondary).frame(width: 20)
                             Image(systemName: !r.enabled ? "minus.circle" : (r.matched ? "checkmark.circle.fill" : "xmark.circle"))
-                                .foregroundStyle(!r.enabled ? AnyShapeStyle(.secondary) : (r.matched ? AnyShapeStyle(.green) : AnyShapeStyle(.secondary)))
+                                .symbolRenderingMode(r.enabled && r.matched ? .multicolor : .monochrome)
+                                .foregroundStyle(.secondary)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(r.name).fontWeight(r.ruleID == trace.winningRuleID ? .semibold : .regular)
                                 Text(r.explanation).font(.caption).foregroundStyle(.secondary)

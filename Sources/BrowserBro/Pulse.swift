@@ -10,7 +10,8 @@ final class PulseState {
     var request: RouteRequest?
     var message: String?
     var hovering = false
-    var anchor = UnitPoint.topLeading
+    /// Slow downward drift while the capsule is up.
+    var drift: CGFloat = 0
 }
 
 /// A small glass capsule next to the pointer after a rule opened a link: "→ Chrome · Work ›".
@@ -52,19 +53,25 @@ final class PulseController {
         let size = CGSize(width: state.message != nil ? Self.messageWidth : Self.linkWidth, height: state.message != nil ? 52 : Self.height)
         // Hot spot outside the card (negative) puts the card just below-right of the pointer.
         let placement = CursorPlacement.frame(content: size, hotSpot: Self.offset)
-        state.anchor = placement.anchor
         p.setFrame(placement.frame, display: true)
         p.orderFrontRegardless()
-        if !state.isOpen {
-            DispatchQueue.main.async {
-                withAnimation(self.animation) { self.state.isOpen = true }
+        var reset = Transaction()
+        reset.disablesAnimations = true
+        withTransaction(reset) { state.drift = 0 }
+        DispatchQueue.main.async {
+            // The glass materializes at the pointer, then drifts down a little until it dissolves.
+            withAnimation(self.animation) { self.state.isOpen = true }
+            if !self.reduceMotion {
+                withAnimation(.easeOut(duration: duration + 0.4)) { self.state.drift = 6 }
             }
         }
         scheduleHide(after: duration)
     }
 
+    private var reduceMotion: Bool { NSWorkspace.shared.accessibilityDisplayShouldReduceMotion }
+
     private var animation: Animation {
-        NSWorkspace.shared.accessibilityDisplayShouldReduceMotion ? .easeOut(duration: 0.12) : .spring(response: 0.3, dampingFraction: 0.8)
+        reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.32, dampingFraction: 0.82)
     }
 
     private func scheduleHide(after seconds: Double) {
@@ -79,10 +86,10 @@ final class PulseController {
     }
 
     func hide() {
-        withAnimation(animation) { state.isOpen = false }
+        withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .easeOut(duration: 0.3)) { state.isOpen = false }
         let p = panel
         Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(300))
+            try? await Task.sleep(for: .milliseconds(340))
             if !self.state.isOpen { p?.orderOut(nil) }
         }
     }
@@ -107,32 +114,47 @@ struct PulseView: View {
     @Bindable var state: PulseState
     let onTap: () -> Void
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        let open = state.isOpen
+        GlassEffectContainer {
+            ZStack(alignment: .topLeading) {
+                Color.clear
+                if state.isOpen {
+                    capsule
+                        .glassEffectTransition(reduceMotion ? .identity : .materialize)
+                        .transition(.opacity)
+                        .offset(y: state.drift)
+                }
+            }
+            .padding(CursorPlacement.margin)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    private var capsule: some View {
         content
             .padding(.horizontal, 14)
             .frame(height: state.message != nil ? 52 : PulseController.height)
             .frame(maxWidth: state.message != nil ? PulseController.messageWidth : PulseController.linkWidth, alignment: .leading)
             .fixedSize(horizontal: true, vertical: false)
             .background {
-                if reduceTransparency { Capsule().fill(.windowBackground).overlay(Capsule().strokeBorder(.separator)) }
+                if reduceTransparency {
+                    RoundedRectangle(cornerRadius: 17, style: .continuous).fill(.windowBackground)
+                        .overlay(RoundedRectangle(cornerRadius: 17, style: .continuous).strokeBorder(.separator))
+                }
             }
             .glassEffect(reduceTransparency ? .identity : .regular.interactive(), in: .rect(cornerRadius: 17))
-            .shadow(color: .black.opacity(0.15), radius: 10, y: 4)
             .contentShape(.rect(cornerRadius: 17))
             .onHover { state.hovering = $0 }
             .onTapGesture { onTap() }
-            .padding(CursorPlacement.margin)
-            .scaleEffect(open ? 1 : 0.6, anchor: state.anchor)
-            .opacity(open ? 1 : 0)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 
     @ViewBuilder
     private var content: some View {
         if let message = state.message {
             Label(message, systemImage: "exclamationmark.triangle.fill")
+                .symbolRenderingMode(.multicolor)
                 .font(.system(size: 11, weight: .medium))
                 .lineLimit(2)
         } else if let target = state.target {
