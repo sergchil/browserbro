@@ -203,6 +203,35 @@ final class AppModel {
         }
     }
 
+    // MARK: Presets
+
+    /// The preset sheet is open (Settings window).
+    var presetSheetVisible = false
+
+    /// First run: offer presets once, only while there are no rules yet.
+    func offerPresetsIfNew() {
+        guard !settings.settings.presetsOffered else { return }
+        if rules.file.rules.isEmpty {
+            presetSheetVisible = true
+        } else {
+            settings.settings.presetsOffered = true
+        }
+    }
+
+    /// Visible targets in picker order, labelled by the user's label or the profile name (for the target guess).
+    var presetCandidates: [(id: TargetID, label: String)] {
+        pickerChoices.map { c in
+            (c.id, settings.settings.customLabels[c.id.description] ?? c.target.profileName ?? "")
+        }
+    }
+
+    /// Adds or updates one rule per chosen pack.
+    func applyPresets(_ choices: [PresetChoice]) {
+        guard !choices.isEmpty else { return }
+        rules.update { $0 = Presets.apply(choices, to: $0) }
+        Log.app.info("Added presets: \(choices.map(\.pack.id).joined(separator: ", "), privacy: .public)")
+    }
+
     func refreshDefaultStatus() {
         isDefaultBrowser = SystemIntegration.isDefaultBrowser
     }

@@ -14,13 +14,21 @@ enum DemoMode {
     static var testerURL: String? { isOn ? argument(after: "--demo-url") : nil }
 
     /// `--demo-pane <general|browsers|rules|tester|about>`: opens Settings on this pane at launch.
-    /// `--demo-url` alone implies `tester`; `--demo-rule` alone implies `rules`.
+    /// `--demo-url` alone implies `tester`; `--demo-rule` alone implies `rules`; `--demo-presets` implies `rules`.
     static var pane: SettingsPane? {
         guard isOn else { return nil }
         if let raw = argument(after: "--demo-pane") { return SettingsPane(rawValue: raw) }
         if testerURL != nil { return .tester }
         if argument(after: "--demo-rule") != nil { return .rules }
+        if presetTicks != nil { return .rules }
         return nil
+    }
+
+    /// `--demo-presets <ids>`: starts with no rules and opens the preset sheet (first-run look),
+    /// with these packs ticked, e.g. `work-apps,work-tools,media`. `-` = none ticked.
+    static var presetTicks: Set<String>? {
+        guard isOn, let raw = argument(after: "--demo-presets") else { return nil }
+        return Set(raw.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) })
     }
 
     /// `--demo-rule <n>`: on the Rules pane, the editor of rule n (1-based) is open. Default: rule 1.
@@ -47,6 +55,7 @@ enum DemoMode {
                 model.selectedRuleID = rules.indices.contains(ruleIndex - 1) ? rules[ruleIndex - 1].id : rules.first?.id
             }
             openSettings(pane)
+            if presetTicks != nil { model.presetSheetVisible = true }
         }
         if let url = pickURL {
             if let p = pickPoint { CGWarpMouseCursorPosition(p) }
@@ -65,13 +74,19 @@ enum DemoMode {
     /// Links are recorded, never opened. The demo rules are added when the rules file is empty.
     @MainActor
     static func prepare(_ model: AppModel) {
+        // `--demo-appearance light|dark`: force the look for this run, for light and dark screenshots.
+        switch argument(after: "--demo-appearance") {
+        case "light": NSApp.appearance = NSAppearance(named: .aqua)
+        case "dark": NSApp.appearance = NSAppearance(named: .darkAqua)
+        default: break
+        }
         model.launchOverride = { url, target, options in
             let line = "Demo: would open \(url.absoluteString) in \(target.fullName)\(options.privateWindow ? " (private)" : "")"
             Log.app.notice("\(line, privacy: .public)")
             print(line)
             fflush(stdout)
         }
-        if model.rules.file.rules.isEmpty { model.rules.save(rules()) }
+        if model.rules.file.rules.isEmpty && presetTicks == nil { model.rules.save(rules()) }
     }
 
     // Muted tints: they color the monogram badge and the picker lens.

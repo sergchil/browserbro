@@ -133,6 +133,8 @@ struct AppSettings: Codable, Equatable {
     var customKeys: [String: Int] = [:]
     /// App path of the default browser before BrowserBro took over. Used as last-resort fallback.
     var previousDefaultBrowser: String?
+    /// The "Start with presets?" sheet was shown once (or rules already existed).
+    var presetsOffered = false
 
     init() {}
 
@@ -145,6 +147,7 @@ struct AppSettings: Codable, Equatable {
         customLabels = try c.decodeIfPresent([String: String].self, forKey: .customLabels) ?? [:]
         customKeys = try c.decodeIfPresent([String: Int].self, forKey: .customKeys) ?? [:]
         previousDefaultBrowser = try c.decodeIfPresent(String.self, forKey: .previousDefaultBrowser)
+        presetsOffered = try c.decodeIfPresent(Bool.self, forKey: .presetsOffered) ?? false
     }
 }
 

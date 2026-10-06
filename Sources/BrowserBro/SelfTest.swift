@@ -109,7 +109,25 @@ final class SelfTest {
         await settle(0.6)
         expect(launched.count == m + 1 && launched.last?.0.absoluteString == "https://docs.selftest-b.example/z", "bro://open?url= routes the inner link")
 
-        // 11. Invalid rules file keeps the last good rules.
+        // 11. Presets: every pack becomes one rule; adding them again updates, never duplicates.
+        let workT = choices[0].id, personalT = choices[1].id
+        let packs = Presets.all.map { PresetChoice(pack: $0, target: $0.side == .work ? workT : personalT) }
+        let ruleCount = model.rules.file.rules.count
+        model.applyPresets(packs)
+        model.applyPresets(packs)
+        let presetRules = model.rules.file.rules.filter { $0.preset != nil }
+        expect(model.rules.file.rules.count == ruleCount + Presets.all.count && presetRules.count == Presets.all.count
+               && model.rules.file.rules.first?.preset == "work-apps",
+               "\(Presets.all.count) preset packs added twice → \(presetRules.count) rules, “From work apps” first")
+        let p = launched.count
+        model.route(RouteRequest(url: URL(string: "https://youtu.be/selftest")!, sourceBundleID: "com.tinyspeck.slackmacgap"))
+        await settle(0.6)
+        model.route(RouteRequest(url: URL(string: "https://youtu.be/selftest")!))
+        await settle(0.6)
+        expect(launched.count == p + 2 && launched[p].1 == workT && launched[p + 1].1 == personalT,
+               "YouTube from Slack → work target (From work apps); YouTube from elsewhere → personal target (Media)")
+
+        // 12. Invalid rules file keeps the last good rules.
         let good = model.rules.file.rules.count
         try? Data("{ not json".utf8).write(to: AppPaths.rulesFile)
         await settle(1.0)

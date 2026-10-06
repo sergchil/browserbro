@@ -26,8 +26,13 @@ struct RulesPane: View {
                 .listStyle(.inset)
                 .overlay {
                     if file.rules.isEmpty {
-                        ContentUnavailableView("No rules yet", systemImage: "arrow.triangle.branch",
-                                               description: Text("Add a rule, or tick “Always open … here” in the picker."))
+                        ContentUnavailableView {
+                            Label("No rules yet", systemImage: "arrow.triangle.branch")
+                        } description: {
+                            Text("Add a rule, start from a preset, or tick “Always open … here” in the picker.")
+                        } actions: {
+                            Button("Add from Preset…") { model.presetSheetVisible = true }
+                        }
                     }
                 }
                 Divider()
@@ -52,6 +57,8 @@ struct RulesPane: View {
         .navigationTitle("Rules")
         .toolbar {
             ToolbarItemGroup {
+                Button { model.presetSheetVisible = true } label: { Label("Add from Preset…", systemImage: "square.stack.3d.up") }
+                    .help("Add from preset: ready-made rules for work tools, meetings, code, media, social")
                 Button { add() } label: { Label("Add Rule", systemImage: "plus") }
                     .help("Add rule")
                 Button { if let id = model.selectedRuleID { delete(id) } } label: { Label("Delete Rule", systemImage: "minus") }
@@ -72,6 +79,7 @@ struct RulesPane: View {
         var copy = rule
         copy.id = UUID()
         copy.name += " copy"
+        copy.preset = nil // the copy is the user's own rule; the original stays the preset
         model.rules.update { f in
             let i = f.rules.firstIndex { $0.id == rule.id } ?? f.rules.count - 1
             f.rules.insert(copy, at: i + 1)

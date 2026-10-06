@@ -47,6 +47,10 @@ struct SettingsView: View {
             }
         }
         .frame(minWidth: 980, minHeight: 520)
+        .onAppear { model.offerPresetsIfNew() }
+        .sheet(isPresented: $model.presetSheetVisible, onDismiss: { model.settings.settings.presetsOffered = true }) {
+            PresetSheet(model: model)
+        }
     }
 }
 
@@ -177,12 +181,13 @@ struct TargetMenu: View {
     let label: String
     @Binding var selection: TargetID?
     var allowNone = false
+    var noneTitle = "None"
 
     var body: some View {
         let targets = model.catalog.targets
         let profiledApps = Dictionary(grouping: targets.filter { $0.profileName != nil }, by: \.id.app)
         Picker(label, selection: $selection) {
-            if allowNone { Text("None").tag(TargetID?.none) }
+            if allowNone { Text(noneTitle).tag(TargetID?.none) }
             ForEach(targets) { t in
                 Label { Text(t.fullName) } icon: { Image(nsImage: smallIcon(t.appURL)) }
                     .tag(TargetID?.some(t.id))

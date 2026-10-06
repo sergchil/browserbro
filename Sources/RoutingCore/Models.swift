@@ -219,9 +219,12 @@ public struct Rule: Hashable, Codable, Identifiable, Sendable {
     public var conditions: [Condition]
     public var target: TargetID
     public var options: TargetOptions
+    /// ID of the preset pack this rule was made from (see `Presets`). nil = a rule the user made.
+    /// Only used to find the rule again when the pack is added a second time; matching ignores it.
+    public var preset: String?
 
     public init(id: UUID = UUID(), name: String, enabled: Bool = true, mode: MatchMode = .any,
-                conditions: [Condition], target: TargetID, options: TargetOptions = TargetOptions()) {
+                conditions: [Condition], target: TargetID, options: TargetOptions = TargetOptions(), preset: String? = nil) {
         self.id = id
         self.name = name
         self.enabled = enabled
@@ -229,9 +232,10 @@ public struct Rule: Hashable, Codable, Identifiable, Sendable {
         self.conditions = conditions
         self.target = target
         self.options = options
+        self.preset = preset
     }
 
-    enum CodingKeys: String, CodingKey { case id, name, enabled, match, target, options }
+    enum CodingKeys: String, CodingKey { case id, name, enabled, match, target, options, preset }
     enum MatchKeys: String, CodingKey { case mode, conditions }
 
     public init(from decoder: Decoder) throws {
@@ -244,6 +248,7 @@ public struct Rule: Hashable, Codable, Identifiable, Sendable {
         conditions = try m.decodeIfPresent([Condition].self, forKey: .conditions) ?? []
         target = try c.decode(TargetID.self, forKey: .target)
         options = try c.decodeIfPresent(TargetOptions.self, forKey: .options) ?? TargetOptions()
+        preset = try c.decodeIfPresent(String.self, forKey: .preset)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -256,6 +261,7 @@ public struct Rule: Hashable, Codable, Identifiable, Sendable {
         try m.encode(conditions, forKey: .conditions)
         try c.encode(target, forKey: .target)
         if options != TargetOptions() { try c.encode(options, forKey: .options) }
+        try c.encodeIfPresent(preset, forKey: .preset)
     }
 }
 
