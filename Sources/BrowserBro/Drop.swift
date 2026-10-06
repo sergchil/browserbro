@@ -341,15 +341,15 @@ struct DropView: View {
                     .offset(x: rect.minX, y: rect.minY)
                     .opacity(shown == .gone ? 0 : 1)
             } else {
-                GlassEffectContainer {
+                BBGlassContainer {
                     ZStack(alignment: .topLeading) {
                         Color.clear
                         if shown != .gone {
                             // The content lives inside the glass, so text and symbols get the glass's
                             // adaptive (vibrant) colours over light and dark backdrops.
                             surface(rect)
-                                .glassEffect(.regular, in: .rect(cornerRadius: corner))
-                                .glassEffectTransition(reduceMotion ? .identity : .materialize)
+                                .bbGlass(cornerRadius: corner)
+                                .bbGlassMaterialize(reduceMotion: reduceMotion)
                                 .transition(.opacity)
                                 .offset(x: rect.minX, y: rect.minY)
                         }
@@ -460,10 +460,10 @@ private struct LensView: View {
             if reduceTransparency {
                 shape.fill(tint.opacity(0.35))
             } else {
-                GlassEffectContainer {
+                BBGlassContainer {
                     Color.clear
                         .frame(width: frame.width, height: frame.height)
-                        .glassEffect(.regular.tint(tint.opacity(0.22)).interactive(), in: .rect(cornerRadius: DropLayout.tileCorner))
+                        .bbGlass(cornerRadius: DropLayout.tileCorner, tint: tint.opacity(0.22), interactive: true)
                 }
             }
         }
@@ -604,7 +604,7 @@ private struct DropFooter: View {
                 }
                 .font(.system(size: 11, weight: .medium))
             }
-            .glassStyle(prominent: state.alwaysHere)
+            .bbGlassButtonStyle(prominent: state.alwaysHere)
             .disabled(domain.isEmpty)
             .accessibilityLabel("Always open \(domain) here")
             .accessibilityValue(state.alwaysHere ? "on" : "off")
@@ -636,18 +636,6 @@ private struct KeyChip: View {
                 Text(text).font(.system(size: 10))
             }
         }
-        .glassStyle(prominent: active)
-    }
-}
-
-extension View {
-    /// System Liquid Glass button style; prominent (tinted) when on.
-    @ViewBuilder
-    func glassStyle(prominent: Bool) -> some View {
-        if prominent {
-            buttonStyle(.glassProminent)
-        } else {
-            buttonStyle(.glass)
-        }
+        .bbGlassButtonStyle(prominent: active)
     }
 }

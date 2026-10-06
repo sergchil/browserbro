@@ -1,4 +1,4 @@
-BrowserBro __VERSION__ for macOS 26 (Tahoe) or later, Apple silicon.
+BrowserBro __VERSION__ for macOS 14 Sonoma or later · Apple silicon and Intel (Liquid Glass look on macOS 26).
 
 ## Install
 
@@ -16,7 +16,7 @@ curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/in
 
 **Download**: `BrowserBro.zip` below. Unzip it and drag BrowserBro to Applications. The first time you open it:
 
-1. macOS says it cannot verify BrowserBro. Click **Done** (not "Move to Trash").
+1. macOS says it cannot verify BrowserBro. Click **Done** (**OK** on macOS 14), not "Move to Trash".
 2. Open **System Settings → Privacy & Security**, scroll down to **Security**, and click **Open Anyway**. The button stays for about one hour.
 3. Enter your Mac password, then click **Open**.
 

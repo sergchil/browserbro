@@ -13,6 +13,7 @@ description: "Use when releasing a new BrowserBro version. Tag, verify assets, b
 4. Bump the cask in `sergchil/homebrew-tap` → `Casks/browserbro.rb`: `version` and `sha256` of the new `BrowserBro-X.Y.Z.zip`. Keep the `postflight_steps` block that removes quarantine.
 5. Verify like a new user, without touching `/Applications/BrowserBro.app`:
    - `curl -sIL https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip` → 200.
+   - In the downloaded app: `lipo -info …/MacOS/BrowserBro` → `x86_64 arm64`; `otool -l … | grep -A4 LC_BUILD_VERSION` → `minos 14.0` and `sdk 26.x` or newer (build-app.sh stamps the real SDK; an old SDK number turns off the macOS 26 look).
    - `BROWSERBRO_INSTALL_DIR=$(mktemp -d) BROWSERBRO_NO_OPEN=1 bash scripts/install.sh` → installed, no `com.apple.quarantine`.
    - `brew install --cask sergchil/tap/browserbro --appdir=$(mktemp -d)`, then uninstall and untap. Uninstall quits the running app: relaunch `/Applications/BrowserBro.app` after.
 

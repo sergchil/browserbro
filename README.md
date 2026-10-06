@@ -8,7 +8,7 @@
 
 [![Release](https://img.shields.io/github/v/release/sergchil/browserbro?label=release)](https://github.com/sergchil/browserbro/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/sergchil/browserbro/total)](https://github.com/sergchil/browserbro/releases)
-![macOS 26+](https://img.shields.io/badge/macOS-26%2B-black?logo=apple)
+![macOS 14+](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 [![License: MIT](https://img.shields.io/github/license/sergchil/browserbro)](LICENSE)
 
 <picture>
@@ -34,12 +34,12 @@ BrowserBro becomes your default browser. A rule sends each link to the right bro
 | ⚡ Terminal | `curl -fsSL https://raw.githubusercontent.com/sergchil/browserbro/main/scripts/install.sh \| bash` |
 | 📦 Download | [BrowserBro.dmg](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg) · [BrowserBro.zip](https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.zip) |
 
-macOS 26 or later, Apple silicon. Then open Settings and click **Set as Default Browser…**
+macOS 14 Sonoma or later · Apple silicon and Intel (Liquid Glass look on macOS 26). Then open Settings and click **Set as Default Browser…**
 
 <details>
 <summary>Downloaded it? First open takes 3 steps</summary>
 
-1. macOS says it cannot verify BrowserBro. Click **Done**.
+1. macOS says it cannot verify BrowserBro. Click **Done** (**OK** on macOS 14).
 2. Open **System Settings → Privacy & Security** and click **Open Anyway**.
 3. Enter your password and click **Open**.
 
@@ -99,7 +99,7 @@ Why: the app is not notarized (Apple charges $99 a year). Homebrew and the Termi
 <details>
 <summary>Build from source</summary>
 
-Needs Xcode 26 or Swift 6.2. No paid Apple account.
+Needs Xcode 26 or Swift 6.2 (the macOS 26 SDK, for Liquid Glass). The app still runs on macOS 14. No paid Apple account.
 
 ```bash
 git clone https://github.com/sergchil/browserbro.git

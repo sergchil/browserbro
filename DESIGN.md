@@ -83,6 +83,19 @@ What we do **not** take: the placement. BrowserBro never draws at the top of the
 
 All tiles and the lens live inside one `GlassEffectContainer(spacing: 12)`, so glass shapes blend and morph instead of rendering as separate layers (Apple: "Applying Liquid Glass to custom views").
 
+### macOS 14–15 fallback
+
+Liquid Glass needs macOS 26. The app runs on macOS 14 and later, so every glass call goes through small helpers in `Sources/BrowserBro/Glass.swift` (`bbGlass`, `BBGlassContainer`, `bbGlassMaterialize`, `bbGlassButtonStyle`). On macOS 26 they use the real glass APIs. On 14–15 they draw:
+
+| Glass on 26 | Fallback on 14–15 |
+|---|---|
+| Card / pulse capsule glass | `.regularMaterial` in the same rounded shape, hairline `.separator` edge, soft shadow |
+| Tinted lens | `.ultraThinMaterial` + the same tint, same spring glide between tiles |
+| `materialize` transition | the view's own opacity transition |
+| `.glass` / `.glassProminent` buttons | `.bordered` / `.borderedProminent` |
+
+Layout, keys and motion are the same. Reduce Transparency and Reduce Motion behave the same. `BROWSERBRO_FORCE_LEGACY_UI=1` forces the fallback on macOS 26, to check it (screenshots: `docs/media/legacy-*.png`).
+
 **Profile color.** Chromium profiles may store an avatar or theme color in `Local State`. If present, it tints the lens and the small avatar badge. If not, we use the system accent color. The tint stays subtle (glass tint, not a fill).
 
 ### Tile anatomy
@@ -181,7 +194,7 @@ Menu bar icon: a custom template glyph (a small arrow splitting into two). Templ
 
 ## A7. Settings window
 
-`NavigationSplitView`. On macOS 26 the sidebar gets Liquid Glass from the system; we add no custom material to it.
+`NavigationSplitView`. On macOS 26 the sidebar gets Liquid Glass from the system (on 14–15, the system sidebar material); we add no custom material to it.
 
 | Sidebar item | Content |
 |---|---|

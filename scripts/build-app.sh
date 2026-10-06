@@ -8,18 +8,25 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
-VERSION="${VERSION:-1.0.0}"
+VERSION="${VERSION:-1.1.0}"
 BUILD_NUMBER="${BUILD_NUMBER:-$(git rev-list --count HEAD 2>/dev/null || echo 1)}"
 APP="build/BrowserBro.app"
 
-echo "→ swift build (release)"
-swift build -c release --product BrowserBro
-BIN="$(swift build -c release --show-bin-path)/BrowserBro"
+# Universal binary: Apple silicon and Intel.
+ARCHS=(--arch arm64 --arch x86_64)
+
+echo "→ swift build (release, universal)"
+swift build -c release --product BrowserBro "${ARCHS[@]}"
+BIN="$(swift build -c release "${ARCHS[@]}" --show-bin-path)/BrowserBro"
 
 echo "→ assemble $APP"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN" "$APP/Contents/MacOS/BrowserBro"
+# SwiftPM records the SDK version as the deployment target (14.0). macOS 26 reads the linked SDK
+# version to choose the Liquid Glass look for system controls, so stamp the real SDK version.
+vtool -set-build-version macos 14.0 "$(xcrun --show-sdk-version)" -replace \
+  -output "$APP/Contents/MacOS/BrowserBro" "$APP/Contents/MacOS/BrowserBro" 2>/dev/null
 sed -e "s/__VERSION__/$VERSION/" -e "s/__BUILD__/$BUILD_NUMBER/" Resources/Info.plist > "$APP/Contents/Info.plist"
 plutil -lint "$APP/Contents/Info.plist" >/dev/null
 

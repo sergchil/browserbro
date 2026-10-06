@@ -117,12 +117,12 @@ struct PulseView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        GlassEffectContainer {
+        BBGlassContainer {
             ZStack(alignment: .topLeading) {
                 Color.clear
                 if state.isOpen {
                     capsule
-                        .glassEffectTransition(reduceMotion ? .identity : .materialize)
+                        .bbGlassMaterialize(reduceMotion: reduceMotion)
                         .transition(.opacity)
                         .offset(y: state.drift)
                 }
@@ -144,7 +144,7 @@ struct PulseView: View {
                         .overlay(RoundedRectangle(cornerRadius: 17, style: .continuous).strokeBorder(.separator))
                 }
             }
-            .glassEffect(reduceTransparency ? .identity : .regular.interactive(), in: .rect(cornerRadius: 17))
+            .bbGlass(cornerRadius: 17, interactive: true, enabled: !reduceTransparency)
             .contentShape(.rect(cornerRadius: 17))
             .onHover { state.hovering = $0 }
             .onTapGesture { onTap() }

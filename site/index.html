@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>BrowserBro — open each link in the right browser and profile</title>
-  <meta name="description" content="A free, open-source macOS 26 menu bar app. It becomes your default browser and opens each link in the right browser and profile, by your rules or with one key.">
+  <meta name="description" content="A free, open-source Mac menu bar app (macOS 14 or later). It becomes your default browser and opens each link in the right browser and profile, by your rules or with one key.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0b10" media="(prefers-color-scheme: dark)">
@@ -13,12 +13,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sergchil.github.io/browserbro/">
   <meta property="og:title" content="BrowserBro — open each link in the right browser and profile">
-  <meta property="og:description" content="A free macOS 26 menu bar app. Rules send each link to the right browser and profile. No rule? Pick with one key.">
+  <meta property="og:description" content="A free Mac menu bar app (macOS 14 or later). Rules send each link to the right browser and profile. No rule? Pick with one key.">
   <meta property="og:image" content="https://sergchil.github.io/browserbro/assets/media/hero-light-poster.png">
   <meta property="og:image:alt" content="The BrowserBro picker over a chat window, with Safari, Chrome Work, Chrome Personal, Firefox, Arc and Brave.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BrowserBro — open each link in the right browser and profile">
-  <meta name="twitter:description" content="A free macOS 26 menu bar app. Rules send each link to the right browser and profile.">
+  <meta name="twitter:description" content="A free Mac menu bar app (macOS 14 or later). Rules send each link to the right browser and profile.">
   <meta name="twitter:image" content="https://sergchil.github.io/browserbro/assets/media/hero-light-poster.png">
 
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
@@ -70,7 +70,7 @@
           <a class="btn btn-primary magnetic" href="https://github.com/sergchil/browserbro/releases/latest/download/BrowserBro.dmg">Download for Mac</a>
           <a class="btn btn-glass magnetic" href="#install">Homebrew or Terminal</a>
         </div>
-        <p class="fine">Free · MIT · macOS 26 · Apple silicon</p>
+        <p class="fine">Free · MIT · macOS 14 or later · Apple silicon and Intel</p>
       </div>
 
       <figure class="hero-media">
@@ -128,7 +128,7 @@
     <section class="section" id="install" aria-labelledby="install-title">
       <header class="sec-head reveal">
         <h2 id="install-title">Install</h2>
-        <p class="sub">Free. macOS 26 (Tahoe) or later, Apple silicon.</p>
+        <p class="sub">Free. macOS 14 Sonoma or later · Apple silicon and Intel (Liquid Glass look on macOS 26).</p>
       </header>
 
       <div class="dl reveal">
@@ -154,7 +154,7 @@
         <h3>Downloaded the app? The first open takes 3 steps.</h3>
         <p class="fine">Drag BrowserBro to your Applications folder. Then:</p>
         <ol class="open-steps">
-          <li><span class="num">1</span><p>Open BrowserBro. macOS says it cannot verify the app. Click <b>Done</b>, not “Move to Trash”.</p></li>
+          <li><span class="num">1</span><p>Open BrowserBro. macOS says it cannot verify the app. Click <b>Done</b> (<b>OK</b> on macOS 14), not “Move to Trash”.</p></li>
           <li><span class="num">2</span><p>Open <b>System Settings → Privacy &amp; Security</b>. Scroll to <b>Security</b> and click <b>Open Anyway</b>.</p></li>
           <li><span class="num">3</span><p>Enter your Mac password, then click <b>Open</b>. macOS remembers your choice.</p></li>
         </ol>
@@ -183,6 +183,10 @@
         <details class="glass reveal">
           <summary>Where are my rules?</summary>
           <p>In a plain file you can read and back up: <code>~/Library/Application Support/BrowserBro/rules.json</code>.</p>
+        </details>
+        <details class="glass reveal">
+          <summary>Which Macs does it run on?</summary>
+          <p>macOS 14 Sonoma or later, on Apple silicon and Intel. On macOS 26 the picker uses Liquid Glass. On macOS 14 and 15 it uses the classic translucent look, with the same layout and keys.</p>
         </details>
       </div>
     </section>

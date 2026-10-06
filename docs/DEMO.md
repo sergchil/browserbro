@@ -9,6 +9,7 @@ profiles: no real profile names, no profile pictures.
 | --- | --- |
 | `BROWSERBRO_DEMO=1` | Turns demo mode on. |
 | `BROWSERBRO_SUPPORT_DIR=<dir>` | Rules and settings are read from and written to `<dir>`. Use an empty temp folder. Without it, demo mode uses `$TMPDIR/BrowserBro-demo`. The real files in `~/Library/Application Support/BrowserBro` are never touched in demo mode. |
+| `BROWSERBRO_FORCE_LEGACY_UI=1` | Shows the macOS 14–15 look (materials instead of Liquid Glass) on macOS 26. Works with or without demo mode. |
 
 What demo mode does:
 

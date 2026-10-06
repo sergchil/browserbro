@@ -158,7 +158,7 @@ A rule = **conditions** + **target** + **options**. Rules are ordered; the **fir
 | N-4 | Permissions | Core features need **no** special permissions. Accessibility is asked only if the user turns on Safari profiles (P2). |
 | N-5 | Reliability | A link is never lost: on any error the app falls back to the picker, then to the system's previous default browser. |
 | N-6 | Accessibility | Full keyboard use; VoiceOver labels; respects Reduce Transparency, Reduce Motion, Increase Contrast. |
-| N-7 | Platform | macOS 26 (Tahoe) or later, Apple Silicon. Liquid Glass APIs need macOS 26; one target OS keeps one code path. |
+| N-7 | Platform | macOS 14 (Sonoma) or later, Apple silicon and Intel (universal binary). Liquid Glass on macOS 26; on macOS 14–15 the same UI uses classic materials (one set of views, small `#available` helpers in `Glass.swift`). |
 | N-8 | Quality | Core engine coverage ≥ 90% lines; every condition type has table tests; the 200-pair routing corpus runs in CI. |
 | N-9 | Localization | English first; all strings in a String Catalog so more languages can be added later. |
 
@@ -249,7 +249,8 @@ open in default target
 
 ## 14. Decisions made (can be changed)
 
-- **macOS 26+ only**, to use Liquid Glass with no fallback code path.
+- **macOS 14+, Liquid Glass on 26.** v1.0 was macOS 26 only. From v1.1 the app runs on macOS 14 Sonoma and later. Only the picker and the pulse use glass APIs, so the fallback is small: `Glass.swift` wraps every macOS-26-only call and uses material + hairline + shadow on 14–15. `BROWSERBRO_FORCE_LEGACY_UI=1` shows the fallback on macOS 26 for checks. Universal binary (Apple silicon and Intel): it costs only build time.
+- **Native Swift, not Tauri or GPUI.** The app is mostly macOS APIs: the URL Apple Event with the sender app, the default-browser API, a non-activating panel at the pointer, AppleScript for Arc, `SMAppService` for launch at login. Native Liquid Glass exists only in AppKit and SwiftUI. Tauri is a web view (about 60–150 MB RAM, slower cold start when a link is clicked). GPUI draws everything itself: no native controls, and its API is not stable. If we go cross-platform later, we port only `RoutingCore`.
 - **First match wins**, ordered list. No scoring or weights: easy to explain and to test.
 - **Picker is the default fallback**, not "open in default browser", so unknown links are never misrouted.
 - **Picker opens at the mouse pointer**, not at the top of the screen: the user's eyes and hand are already there, and choice 1 needs no mouse travel.

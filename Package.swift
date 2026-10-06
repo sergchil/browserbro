@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "BrowserBro",
-    platforms: [.macOS(.v26)],
+    platforms: [.macOS(.v14)],
     products: [
         .library(name: "RoutingCore", targets: ["RoutingCore"]),
         .executable(name: "bro", targets: ["bro"]),

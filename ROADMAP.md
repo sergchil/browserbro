@@ -70,7 +70,7 @@ swift run bro test "https://linear.app/x" --from com.tinyspeck.slackmacgap --rul
 **Requirements:** F-IN-1…6, F-CAT-1…5, F-RULE-5 (default-target mode), F-SET-5, N-3, N-5.
 
 Tasks:
-1. Xcode app target, agent app (`LSUIElement`), macOS 26 minimum, links `RoutingCore`.
+1. Xcode app target, agent app (`LSUIElement`), macOS 14 minimum (v1.0 shipped with 26; lowered in v1.1), links `RoutingCore`.
 2. `LinkIntake` (Apple Event handler, sender, modifiers, multi-URL, cold start).
 3. `BrowserCatalog` + Chromium and Gecko profile readers + folder watching.
 4. `Launcher` strategies proven in Phase 0; failure chain (picker placeholder → previous default browser).

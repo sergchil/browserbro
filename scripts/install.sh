@@ -25,9 +25,8 @@ main() {
 # 1. This Mac
 [ "$(uname -s)" = "Darwin" ] || fail "BrowserBro runs on macOS only."
 MACOS="$(sw_vers -productVersion)"
-[ "${MACOS%%.*}" -ge 26 ] 2>/dev/null || fail "BrowserBro needs macOS 26 (Tahoe) or later. This Mac has macOS $MACOS."
-# hw.optional.arm64 is 1 on Apple silicon, even when this shell runs under Rosetta.
-[ "$(sysctl -n hw.optional.arm64 2>/dev/null || echo 0)" = "1" ] || fail "BrowserBro needs a Mac with Apple silicon (M1 or newer)."
+[ "${MACOS%%.*}" -ge 14 ] 2>/dev/null || fail "BrowserBro needs macOS 14 (Sonoma) or later. This Mac has macOS $MACOS."
+# The app is a universal binary: Apple silicon and Intel.
 
 # 2. Where to install
 if [ -n "${BROWSERBRO_INSTALL_DIR:-}" ]; then
