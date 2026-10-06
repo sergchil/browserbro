@@ -204,6 +204,15 @@ Menu bar icon: a custom template glyph (a small arrow splitting into two). Templ
 | **Tester** | URL field, sender-app picker, modifier toggles → result card and trace. |
 | **About** | Version, license, link to the repo, "rules file: Reveal in Finder". |
 
+### Preset sheet
+
+A sheet over Settings → Rules: "Start with presets?". One glass row per pack (`Glass.swift` helpers):
+checkbox, name, the sites or apps it covers, and a target pop-up (pre-selected when a profile is
+named like "Work" or "Personal", else empty: "Add" stays off until every ticked pack has a target). Code has an optional
+"Only this org or path" field. Footer: "Skip" / "Add N rules". Packs already added are marked.
+Shown once on first run (after the window is on screen), then from "Add from Preset…" on the
+Rules pane. Reduce Motion: no row animation.
+
 ### Rule editor (sentence style)
 
 ```text

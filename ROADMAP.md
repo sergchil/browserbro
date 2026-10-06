@@ -154,6 +154,7 @@ Pick by need; each is independent.
 | "Running app" condition | F-RULE-10 | e.g. route Meet links to Chrome only while Zoom is not running. |
 | Finicky config import | F-SET-8 | Static handlers only; function matchers listed as not imported. |
 | More browsers' profile support | F-CAT-2/3 | Only after a device check per browser. |
+| Preset rule packs | F-SET-9 | **Done in v1.2.0.** Work tools, Meetings, Code, From work apps, Media, Social. |
 
 ---
 

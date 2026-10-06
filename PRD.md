@@ -147,6 +147,7 @@ A rule = **conditions** + **target** + **options**. Rules are ordered; the **fir
 | F-SET-6 | P1 | Import / export the rules file. |
 | F-SET-7 | P1 | Launch at login (`SMAppService`). |
 | F-SET-8 | P2 | Import a simple Finicky config (static `handlers` with string / regex `match` and `browser` + `profile`). Function-based matchers are listed as "not imported". |
+| F-SET-9 | P2 | **Preset rule packs** (built in, no download): Work tools, Meetings, Code (optional org filter), From work apps (Slack, Teams, Outlook, Zoom), Media, Social. Each ticked pack becomes one normal, editable rule named like "Work tools (preset)" with a target the user picks. Offered once on first run (no rules yet), and anytime via "Add from Preset…". Adding a pack again updates its rule, never duplicates it. "From work apps" goes first in the list. |
 
 ## 8. Non-functional requirements
 

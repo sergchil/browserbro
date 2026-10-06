@@ -81,6 +81,16 @@ Why: the app is not notarized (Apple charges $99 a year). Homebrew and the Termi
 <b>Pulse.</b> A rule fired? A tiny note shows where the link went.
 </td>
 </tr>
+<tr>
+<td width="50%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/presets-dark.png">
+  <img src="docs/media/presets-light.png" alt="Start with presets: packs for work apps, work tools, meetings, code, media and social, each with a target.">
+</picture>
+<b>Presets.</b> Tick a pack (Work tools, Meetings, Media…), pick a profile. Each pack is one rule you can edit.
+</td>
+<td width="50%"></td>
+</tr>
 </table>
 
 ## Keys

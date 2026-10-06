@@ -47,7 +47,6 @@ struct SettingsView: View {
             }
         }
         .frame(minWidth: 980, minHeight: 520)
-        .onAppear { model.offerPresetsIfNew() }
         .sheet(isPresented: $model.presetSheetVisible, onDismiss: { model.settings.settings.presetsOffered = true }) {
             PresetSheet(model: model)
         }

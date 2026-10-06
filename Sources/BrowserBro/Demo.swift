@@ -55,7 +55,10 @@ enum DemoMode {
                 model.selectedRuleID = rules.indices.contains(ruleIndex - 1) ? rules[ruleIndex - 1].id : rules.first?.id
             }
             openSettings(pane)
-            if presetTicks != nil { model.presetSheetVisible = true }
+            if presetTicks != nil {
+                // After the window is on screen (same reason as the first-run sheet).
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { model.presetSheetVisible = true }
+            }
         }
         if let url = pickURL {
             if let p = pickPoint { CGWarpMouseCursorPosition(p) }

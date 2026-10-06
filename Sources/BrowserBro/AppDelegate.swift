@@ -225,5 +225,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         NSApp.setActivationPolicy(.regular)
         NSApp.activate()
         settingsWindow?.makeKeyAndOrderFront(nil)
+        // Present the first-run sheet only once the window is on screen.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self, self.settingsWindow?.isVisible == true else { return }
+            self.model.offerPresetsIfNew()
+        }
     }
 }

@@ -209,9 +209,12 @@ final class AppModel {
     var presetSheetVisible = false
 
     /// First run: offer presets once, only while there are no rules yet.
+    /// Call it after the Settings window is on screen: a sheet presented in the same tick
+    /// the window appears can leave the wrong pane behind it.
     func offerPresetsIfNew() {
         guard !settings.settings.presetsOffered else { return }
         if rules.file.rules.isEmpty {
+            settingsPane = .rules
             presetSheetVisible = true
         } else {
             settings.settings.presetsOffered = true

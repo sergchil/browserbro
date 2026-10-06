@@ -37,6 +37,8 @@ What demo mode does:
 | `--demo-pick <url>` | Routes this link at launch, like a click in another app. With no matching rule the picker opens at the pointer; with a matching rule the launch is printed. |
 | `--demo-point <x>,<y>` | With `--demo-pick`: first moves the pointer to this point (points, top-left origin of the main display), so the picker opens there. |
 | `--demo-source <bundle id>` | With `--demo-pick`: the app the link came from, e.g. `com.tinyspeck.slackmacgap` to hit the Slack rule. |
+| `--demo-presets <ids>` | Starts with no rules and opens the preset sheet on Rules, with these packs ticked, e.g. `work-apps,work-tools,meetings,code,media`. `-` = none ticked. |
+| `--demo-appearance <light\|dark>` | Forces the light or dark look for this run. |
 | `--demo-tour <dir>` | Scripted tour for README and site media. See the comment at the top of `Sources/BrowserBro/DemoTour.swift`. |
 
 ## Commands
@@ -52,6 +54,10 @@ BROWSERBRO_DEMO=1 BROWSERBRO_SUPPORT_DIR=$(mktemp -d) .build/debug/BrowserBro --
 
 # Rules pane, editor of rule 2 open
 BROWSERBRO_DEMO=1 BROWSERBRO_SUPPORT_DIR=$(mktemp -d) .build/debug/BrowserBro --demo-rule 2
+
+# Preset sheet (first-run look), dark
+BROWSERBRO_DEMO=1 BROWSERBRO_SUPPORT_DIR=$(mktemp -d) .build/debug/BrowserBro \
+  --demo-presets work-apps,work-tools,meetings,code,media --demo-appearance dark
 
 # Picker at screen point (600, 400); no rule matches this link
 BROWSERBRO_DEMO=1 BROWSERBRO_SUPPORT_DIR=$(mktemp -d) .build/debug/BrowserBro \
