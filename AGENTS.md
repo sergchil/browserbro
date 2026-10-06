@@ -9,6 +9,11 @@ BrowserBro is a macOS menu bar app. It becomes the default browser and sends eac
 to the right browser **and profile**, using rules. No rule matches → a glass picker opens
 at the pointer. Native Swift (AppKit + SwiftUI), no web view, no dependencies.
 
+Runs on **macOS 14 Sonoma or later**, universal binary (Apple silicon + Intel). Liquid Glass on
+macOS 26+; classic material look on 14–15. All glass goes through the helpers in
+`Sources/BrowserBro/Glass.swift`: never call `glassEffect` or other macOS 26 APIs directly.
+`BROWSERBRO_FORCE_LEGACY_UI=1` forces the 14–15 look on macOS 26, to check the fallback.
+
 Product docs: [PRD.md](PRD.md) (requirements), [DESIGN.md](DESIGN.md) (UI, Liquid Glass),
 [RESEARCH.md](RESEARCH.md) (other apps), [ROADMAP.md](ROADMAP.md) (phases).
 
