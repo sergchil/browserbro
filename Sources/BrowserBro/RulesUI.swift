@@ -36,10 +36,16 @@ struct RulesPane: View {
                     }
                 }
                 Divider()
-                Text("First match wins. Drag to reorder.")
-                    .font(.caption).foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(8)
+                HStack {
+                    Text("First match wins. Drag to reorder.")
+                        .font(.caption).foregroundStyle(.secondary)
+                    Spacer()
+                    if !file.rules.isEmpty {
+                        Button("Add from Preset…", systemImage: "square.stack.3d.up") { model.presetSheetVisible = true }
+                            .controlSize(.small)
+                    }
+                }
+                .padding(8)
             }
             .frame(width: 300)
             Divider()
