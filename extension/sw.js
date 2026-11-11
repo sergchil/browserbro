@@ -11,6 +11,21 @@ const asked = new Set();                // tabs already reported to BrowserBro s
 // Makes Chrome start this worker together with the profile, not at the first event it hears.
 chrome.runtime.onStartup.addListener(() => {});
 
+// Loaded from BrowserBro's setup page: that page names this profile, so BrowserBro learns
+// which profile this install lives in. Then the setup tab closes.
+chrome.runtime.onInstalled.addListener(async () => {
+  for (const tab of await chrome.tabs.query({ url: `${API}/setup*` })) {
+    const profile = new URL(tab.url).searchParams.get('profile');
+    if (!profile) continue;
+    try {
+      await post('/pair', { profile });
+      setTimeout(() => chrome.tabs.remove(tab.id).catch(() => {}), 2500);
+    } catch (e) {
+      // BrowserBro is not running: it learns the profile from the first routed link instead.
+    }
+  }
+});
+
 async function installId() {
   const { install } = await chrome.storage.local.get('install');
   if (install) return install;

@@ -9,6 +9,10 @@ BrowserBro is a macOS menu bar app. It becomes the default browser and sends eac
 to the right browser **and profile**, using rules. No rule matches → a glass picker opens
 at the pointer. Native Swift (AppKit + SwiftUI), no web view, no dependencies.
 
+**Chrome mode:** the user can keep Chrome as the default browser instead. The MV3 extension in
+`extension/` (loaded unpacked in each Chrome profile) reports links from other apps to a loopback
+HTTP bridge in the app (`127.0.0.1:41417`), which runs the same rules and answers keep or close.
+
 Runs on **macOS 14 Sonoma or later**, universal binary (Apple silicon + Intel). Liquid Glass on
 macOS 26+; classic material look on 14–15. All glass goes through the helpers in
 `Sources/BrowserBro/Glass.swift`: never call `glassEffect` or other macOS 26 APIs directly.
@@ -22,7 +26,8 @@ Product docs: [PRD.md](PRD.md) (requirements), [DESIGN.md](DESIGN.md) (UI, Liqui
 | Path | What |
 |---|---|
 | `Sources/RoutingCore/` | Pure logic: rule model, matching engine, conflicts, punycode, Arc sidebar parsing. No AppKit. All tests target this. |
-| `Sources/BrowserBro/` | The app: link handling (`AppDelegate`), browser/profile discovery (`Catalog`), launching (`Launcher`), picker (`Floating`), Settings and rules UI, toast (`Pulse`), demo mode (`Demo`, `DemoTour`), `--self-test` (`SelfTest`). |
+| `Sources/BrowserBro/` | The app: link handling (`AppDelegate`), browser/profile discovery (`Catalog`), launching (`Launcher`), picker (`Floating`), Settings and rules UI, toast (`Pulse`), demo mode (`Demo`, `DemoTour`), `--self-test` (`SelfTest`), Chrome mode (`Bridge` = loopback server + routing, `ChromeSetup` = extension folder, per-profile status, setup page, Settings section). |
+| `extension/` | Chrome extension (MV3). `build-app.sh` bundles it as `Resources/ChromeExtension`; the app copies it to `<support dir>/ChromeExtension` on launch, so Chrome keeps one path and one extension ID. |
 | `Sources/bro/` | `bro` CLI: `bro test <url>`, `bro check`, `bro corpus <file>` against a rules file. |
 | `Tests/RoutingCoreTests/` | XCTest + JSON fixtures. |
 | `scripts/` | `build-app.sh`, `make-dmg.sh`, `install.sh` (curl one-liner), `make-icon.swift`, `gen_corpus.py`. |
@@ -66,6 +71,11 @@ owner asks: it quits the running app.
 - **Git.** Commit as `serg.chilingaryan@gmail.com` (check `git log -1 --format=%ae`). Never
   force-push `main`. No secrets, no absolute personal paths in committed files.
 - Plain, short English in README, site and UI text. No sales copy.
+- **Chrome extension.** Bump `version` in `extension/manifest.json` on every change. Chrome does not
+  pick up new files on restart: the user must click Reload in `chrome://extensions` in each profile, so
+  say so when shipping a change. Detection signals and their limits: `DESIGN.md` B12. Bridge log lines
+  are `.notice` (host only, no full URL): `log show --last 10m --predicate 'subsystem == "com.sergchil.BrowserBro"'`.
+  Never point a test extension at port 41417 while the owner's app runs: it routes in his real Chrome.
 
 ## Releasing
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BrowserBro for Chrome",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Hands links from other apps to BrowserBro, which opens them in the right Chrome profile.",
   "permissions": ["webNavigation", "storage", "history"],
   "host_permissions": ["http://127.0.0.1/*"],

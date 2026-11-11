@@ -50,6 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             }
             return
         }
+        ChromeSetup.syncExtension()
         model.bridge.start()
         // First launch by hand (not by a link): show Settings so the user can set things up.
         // Not when Chrome is the default on purpose and the Chrome extension does the routing.
@@ -160,6 +161,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         fallback.submenu = sub
         menu.addItem(fallback)
         menu.addItem(item("Open Link from Clipboard", #selector(openClipboard)))
+        if ChromeSetup.chromeAppURL != nil {
+            menu.addItem(item("Set Up Chrome Extension…", #selector(openGeneral)))
+        }
         menu.addItem(.separator())
         menu.addItem(item("Rules…", #selector(openRules), key: ","))
         menu.addItem(item("Test a Link…", #selector(openTester)))
@@ -201,6 +205,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     @objc private func openRules() { openSettings(pane: .rules) }
+    @objc private func openGeneral() { openSettings(pane: .general) }
     @objc private func openTester() { openSettings(pane: .tester) }
     @objc private func revealRules() { NSWorkspace.shared.activateFileViewerSelecting([AppPaths.rulesFile]) }
     @objc private func quit() { NSApp.terminate(nil) }

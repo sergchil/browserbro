@@ -64,8 +64,9 @@ struct GeneralPane: View {
         Form {
             Section("Default browser") {
                 HStack {
-                    Label(model.isDefaultBrowser ? "BrowserBro is your default browser." : "BrowserBro is not your default browser yet.",
-                          systemImage: model.isDefaultBrowser ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                    let bridged = !model.isDefaultBrowser && model.bridge.isPaired && ChromeSetup.isChromeDefault
+                Label(model.isDefaultBrowser ? "BrowserBro is your default browser." : bridged ? "Chrome is your default browser. Its BrowserBro extension sends links here." : "BrowserBro is not your default browser yet.",
+                          systemImage: model.isDefaultBrowser || bridged ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
                         .symbolRenderingMode(.multicolor)
                     Spacer()
                     if model.isDefaultBrowser {
@@ -87,6 +88,8 @@ struct GeneralPane: View {
                 Text("macOS asks you to confirm. Links you click in any app then come to BrowserBro first.")
                     .font(.callout).foregroundStyle(.secondary)
             }
+
+            ChromeSection(model: model)
 
             Section("Routing") {
                 Picker("When no rule matches", selection: rulesBinding(\.fallback)) {

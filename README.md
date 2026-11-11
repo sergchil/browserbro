@@ -46,6 +46,22 @@ macOS 14 Sonoma or later · Apple silicon and Intel (Liquid Glass look on macOS 
 Why: the app is not notarized (Apple charges $99 a year). Homebrew and the Terminal line skip this.
 </details>
 
+## Keep Chrome as your default
+
+Want Chrome to stay the default browser (for example, your company asks for it)? Use the BrowserBro extension for Chrome. Chrome opens every link, and the extension hands links from other apps to BrowserBro. Your rules and the picker still work.
+
+1. Open BrowserBro **Settings → General → Keep Chrome as the default browser**.
+2. Click **Set Up All Profiles**. A setup page opens in each Chrome profile.
+3. In each one: open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick the folder the page shows (`~/Library/Application Support/BrowserBro/ChromeExtension`). The page says **Done** and closes.
+4. Click **Make Chrome the Default…**.
+
+Good to know:
+
+- A link that belongs in another profile opens in Chrome's last profile first, then moves. One-time links (like sign-in links) can break when they move.
+- Rules by **source app** don't work this way: Chrome doesn't say which app sent the link.
+- After a BrowserBro update, click **Reload** on the extension in `chrome://extensions` in each profile.
+- The extension talks only to BrowserBro on your Mac (`127.0.0.1`), nothing else.
+
 ## Tour
 
 <table>
@@ -123,11 +139,12 @@ swift test
 | `Sources/RoutingCore` | Rules and matching |
 | `Sources/BrowserBro` | The app |
 | `Sources/bro` | `bro test <url>` CLI |
+| `extension/` | Chrome extension (Chrome stays the default browser) |
 | `site/` | Website |
 
 Release: push a tag `vX.Y.Z`. The `Release` workflow publishes the DMG and ZIP. Then bump the cask in [sergchil/homebrew-tap](https://github.com/sergchil/homebrew-tap).
 </details>
 
 <div align="center">
-<sub>No network calls, no accounts, no analytics. <a href="LICENSE">MIT</a>. Built because the wrong browser kept winning. 🤙</sub>
+<sub>No network calls (the Chrome extension talks only to BrowserBro on your Mac), no accounts, no analytics. <a href="LICENSE">MIT</a>. Built because the wrong browser kept winning. 🤙</sub>
 </div>

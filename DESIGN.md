@@ -456,3 +456,37 @@ chili-browser-bro/
 │   └── Tests/RoutingCoreTests/ (+ corpus.json)
 └── .github/workflows/ci.yml     # swift test + corpus on macos runner
 ```
+
+
+## B12. Chrome mode (extension bridge)
+
+For users who must keep Chrome as the default browser. macOS gives a link to one app only, so the
+router runs inside Chrome as an extension, and the app stays the brain.
+
+```text
+link in Slack ─▶ macOS ─▶ Chrome (default) opens it in the last-used profile
+                              │ extension (extension/sw.js) sees an outside link
+                              ▼
+            POST 127.0.0.1:41417/route  ─▶  Bridge.swift ─▶ same rules / picker
+                              ◀─ "keep" | "close" (and BrowserBro opens it in the right profile)
+```
+
+- **Outside link, Chrome running:** `webNavigation.onCommitted` with `transitionType == "start_page"`.
+  In-page clicks are `link`. The URL comes from `onBeforeNavigate` (before redirects).
+- **Link that starts Chrome:** its events are often missed (the worker starts late). The worker
+  registers `runtime.onStartup`, scans open tabs once per session for a fresh history visit, and the
+  app keeps only a tab whose visit is after Chrome's `launchDate` (first 30 s).
+- **Which profile is this extension in?** Extensions can't tell. Each install has a random ID. It is
+  paired with a profile by the setup page (`/setup?profile=<dir>`, the extension reads it on install)
+  or by BrowserBro's own `--profile-directory` launch coming back. The same launch match is the loop
+  guard; a link moved twice in 15 s stays put.
+- **Picker:** the reply waits up to 25 s (Chrome kills a worker fetch at 30 s). Same profile or Esc =
+  keep the tab.
+- **Chrome's own pages** (policy `HomepageLocation`, `NewTabPageLocation`, `RestoreOnStartupURLs`) stay.
+- **Safety:** loopback only; `/route` and `/pair` need an `Origin: chrome-extension://…` header, which a
+  web page cannot send.
+- **Setup:** Chrome blocks apps from opening `chrome://extensions` and from installing an unpacked
+  extension (policy needs MDM, the Web Store needs a paid account). So Settings opens a setup page in
+  each profile with copy buttons, and reads each profile's `Secure Preferences` to show installed / not.
+- **Limits:** the first request leaves from the wrong profile (~10 ms before the extension hears of
+  it); source-app rules don't apply; extension updates need Reload per profile.

@@ -43,6 +43,10 @@ if [ ! -f build/AppIcon.icns ] || [ scripts/make-icon.swift -nt build/AppIcon.ic
 fi
 cp build/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
+echo "→ Chrome extension"
+# Copied on launch to ~/Library/Application Support/BrowserBro/ChromeExtension (see ChromeSetup.swift).
+cp -R extension "$APP/Contents/Resources/ChromeExtension"
+
 echo "→ ad-hoc sign"
 codesign --force --sign - --timestamp=none "$APP"
 codesign --verify --strict "$APP"

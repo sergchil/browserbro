@@ -84,6 +84,7 @@ Priority: **P0** = MVP, must ship · **P1** = v1.0 · **P2** = later, still in s
 | F-IN-5 | P0 | Capture **modifier keys** (⌥ ⇧ ⌘ ⌃) held at the moment the link arrives. |
 | F-IN-6 | P0 | Cold start: if the app was not running, the link that launched it is still routed (no lost links). |
 | F-IN-7 | P1 | Accept `bro://open?url=<encoded>` so Shortcuts, Raycast or scripts can send links in. |
+| F-IN-8 | P1 | **Chrome mode:** Chrome stays the default browser. A Chrome extension in each profile reports links from other apps; BrowserBro routes them with the same rules and picker. Setup from Settings for all profiles at once. Known limits: source-app rules don't apply, the link first loads in Chrome's last profile. Design: `DESIGN.md` B12. |
 
 ### 7.2 Browser and profile catalog
 

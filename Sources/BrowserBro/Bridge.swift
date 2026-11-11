@@ -70,7 +70,27 @@ final class ChromeBridge {
 
     private func respond(to req: BridgeServer.Request) async -> (Int, Data) {
         func json(_ object: [String: Any]) -> Data { (try? JSONSerialization.data(withJSONObject: object)) ?? Data("{}".utf8) }
-        switch (req.method, req.path) {
+        let components = URLComponents(string: "http://127.0.0.1" + req.path)
+        let query = Dictionary((components?.queryItems ?? []).map { ($0.name, $0.value ?? "") }, uniquingKeysWith: { a, _ in a })
+        switch (req.method, components?.path ?? req.path) {
+        case ("GET", "/setup"):
+            // Setup page, opened by BrowserBro in one Chrome profile (Settings → General).
+            return (200, Data(ChromeSetup.setupPage(profile: query["profile"] ?? "", name: query["name"] ?? "").utf8))
+        case ("GET", "/status"):
+            let profile = query["profile"] ?? ""
+            let paired = installs.values.contains { $0.app == Self.chromeID && $0.profile == profile }
+            return (200, json(["installed": paired || ChromeSetup.state(profile: profile) != .missing]))
+        case ("POST", "/pair"):
+            // Sent by the extension when it is loaded while the setup page is open: it names its profile.
+            guard req.headers["origin"]?.hasPrefix("chrome-extension://") == true,
+                  let object = try? JSONSerialization.jsonObject(with: req.body) as? [String: Any],
+                  let install = object["install"] as? String, let profile = object["profile"] as? String, !profile.isEmpty else {
+                return (400, json(["error": "bad request"]))
+            }
+            installs[install] = TargetID(app: Self.chromeID, profile: profile)
+            try? JSONEncoder().encode(installs).write(to: Self.file, options: .atomic)
+            Log.app.notice("Bridge: extension paired with a Chrome profile from the setup page")
+            return (200, json(["ok": true]))
         case ("GET", "/ping"):
             return (200, json(["app": "BrowserBro", "paired": installs.count]))
         case ("POST", "/route"):
@@ -227,7 +247,8 @@ final class BridgeServer: @unchecked Sendable {
     }
 
     private func send(_ connection: NWConnection, status: Int, origin: String?, body: Data) {
-        var head = "HTTP/1.1 \(status) \(status == 200 ? "OK" : "Error")\r\nContent-Type: application/json\r\nContent-Length: \(body.count)\r\nConnection: close\r\n"
+        let type = body.first == UInt8(ascii: "<") ? "text/html; charset=utf-8" : "application/json"
+        var head = "HTTP/1.1 \(status) \(status == 200 ? "OK" : "Error")\r\nContent-Type: \(type)\r\nContent-Length: \(body.count)\r\nConnection: close\r\n"
         if let origin, origin.hasPrefix("chrome-extension://") { head += "Access-Control-Allow-Origin: \(origin)\r\n" }
         head += "\r\n"
         connection.send(content: Data(head.utf8) + body, completion: .contentProcessed { _ in connection.cancel() })

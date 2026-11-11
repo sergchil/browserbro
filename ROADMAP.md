@@ -155,6 +155,7 @@ Pick by need; each is independent.
 | Finicky config import | F-SET-8 | Static handlers only; function matchers listed as not imported. |
 | More browsers' profile support | F-CAT-2/3 | Only after a device check per browser. |
 | Preset rule packs | F-SET-9 | **Done in v1.2.0.** Work tools, Meetings, Code, From work apps, Media, Social. |
+| Chrome mode (extension bridge) | F-IN-8 | **Done on `main`, not released yet.** Next: tests for the bridge decisions. Not planned: a Chrome Web Store listing (needs a paid developer account). |
 
 ---
 
