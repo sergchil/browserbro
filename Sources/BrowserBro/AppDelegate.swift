@@ -50,8 +50,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             }
             return
         }
+        model.bridge.start()
         // First launch by hand (not by a link): show Settings so the user can set things up.
-        if !launchedWithLink && !SystemIntegration.isDefaultBrowser {
+        // Not when Chrome is the default on purpose and the Chrome extension does the routing.
+        if !launchedWithLink && !SystemIntegration.isDefaultBrowser && !model.bridge.isPaired {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 guard let self, !self.launchedWithLink else { return }
                 self.openSettings(pane: .general)
@@ -115,8 +117,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         model.refreshDefaultStatus()
         menu.removeAllItems()
 
-        let header = NSMenuItem(title: model.isDefaultBrowser ? "BrowserBro is your default browser" : "BrowserBro is not the default browser", action: nil, keyEquivalent: "")
-        header.image = NSImage(systemSymbolName: model.isDefaultBrowser ? "checkmark.circle.fill" : "exclamationmark.triangle.fill", accessibilityDescription: nil)
+        // Chrome bridge: Chrome is the default and its extension hands links to BrowserBro.
+        let bridged = !model.isDefaultBrowser && model.bridge.isPaired
+        let header = NSMenuItem(title: model.isDefaultBrowser ? "BrowserBro is your default browser" : bridged ? "Routing links through the Chrome extension" : "BrowserBro is not the default browser", action: nil, keyEquivalent: "")
+        header.image = NSImage(systemSymbolName: model.isDefaultBrowser || bridged ? "checkmark.circle.fill" : "exclamationmark.triangle.fill", accessibilityDescription: nil)
         header.isEnabled = false
         menu.addItem(header)
         if !model.isDefaultBrowser {

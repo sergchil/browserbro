@@ -42,11 +42,16 @@ final class AppModel {
     @ObservationIgnored var launchOverride: ((URL, BrowserTarget, TargetOptions) async throws -> Void)?
 
     func launch(_ url: URL, in target: BrowserTarget, options: TargetOptions) async throws {
+        bridge.noteLaunch(url, target: target.id)
         if let launchOverride { try await launchOverride(url, target, options) } else { try await Launcher.open(url, in: target, options: options) }
     }
 
     @ObservationIgnored lazy var drop = DropController(model: self)
     @ObservationIgnored lazy var pulse = PulseController(model: self)
+    @ObservationIgnored lazy var bridge = ChromeBridge(model: self)
+    /// Chrome bridge: called when the picker item is chosen (or cancelled, choice = nil).
+    /// Returns true when the link is already open in the chosen profile, so nothing is launched.
+    @ObservationIgnored private var pickerHooks: [UUID: (PickerChoice?, Bool) -> Bool] = [:]
 
     // MARK: Picker choices
 
@@ -127,12 +132,50 @@ final class AppModel {
                 }
             }
         case .showPicker(let reason):
-            var note: String?
-            if case .brokenTarget(let rid) = reason, let r = rules.file.rules.first(where: { $0.id == rid }) {
-                note = "Rule “\(r.name)” points to a browser or profile that isn't installed."
+            showPicker(pickerItem(req, reason))
+        }
+    }
+
+    private func pickerItem(_ req: RouteRequest, _ reason: PickerReason) -> PickerItem {
+        var note: String?
+        if case .brokenTarget(let rid) = reason, let r = rules.file.rules.first(where: { $0.id == rid }) {
+            note = "Rule “\(r.name)” points to a browser or profile that isn't installed."
+        }
+        if case .noDefaultTarget = reason { note = "No default target is set. Pick one in Settings → General." }
+        return PickerItem(request: req, reason: reason, note: note)
+    }
+
+    /// Chrome bridge: Chrome already opened this link in the profile `here` (nil = not known yet).
+    /// Returns true when the tab should stay where it is; false when BrowserBro opens the link elsewhere.
+    func routeFromChrome(_ url: URL, here: TargetID?) async -> Bool {
+        let req = RouteRequest(url: url, sourceBundleID: nil, modifiers: ChromeBridge.currentModifiers())
+        let decision = RoutingEngine.decide(req, rules: rules.compiled, available: catalog.availableIDs)
+        Log.route.info("Link from the Chrome bridge: \(String(describing: decision), privacy: .public)")
+        switch decision {
+        case .open(let id, let options, _):
+            // Already in the right place: the same profile, or "Chrome, any profile".
+            let anyChromeProfile = id.app == ChromeBridge.chromeID && id.profile == nil
+            if (id == here || anyChromeProfile) && !options.privateWindow { return true }
+            route(req)
+            return false
+        case .showPicker(let reason):
+            guard !pickerChoices.isEmpty else { return true }
+            let item = pickerItem(req, reason)
+            let once = BridgeOnce()
+            return await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
+                pickerHooks[item.id] = { choice, privateWindow in
+                    // Cancelled, or picked the profile the tab is already in: keep the tab.
+                    let stay = choice == nil || (choice?.target.id == here && !privateWindow)
+                    if once.fire() { continuation.resume(returning: stay) }
+                    return stay
+                }
+                showPicker(item)
+                // The extension cannot wait for ever: after 25 s the tab stays, the picker stays open.
+                Task { @MainActor in
+                    try? await Task.sleep(for: .seconds(25))
+                    if once.fire() { continuation.resume(returning: true) }
+                }
             }
-            if case .noDefaultTarget = reason { note = "No default target is set. Pick one in Settings → General." }
-            showPicker(PickerItem(request: req, reason: reason, note: note))
         }
     }
 
@@ -158,13 +201,18 @@ final class AppModel {
         pickerQueue.removeFirst()
         let req = item.request
         if alwaysHere { saveSiteRule(for: req, target: choice.target.id) }
-        Task {
-            do {
-                try await self.launch(req.url, in: choice.target, options: TargetOptions(privateWindow: privateWindow && choice.target.family.supportsPrivate))
-                self.remember(req, target: choice.target, ruleName: nil)
-            } catch {
-                self.pickerQueue.insert(PickerItem(request: req, reason: item.reason, note: error.localizedDescription), at: 0)
-                self.drop.present()
+        if let hook = pickerHooks.removeValue(forKey: item.id), hook(choice, privateWindow) {
+            // Chrome bridge: the link is already open in this profile.
+            remember(req, target: choice.target, ruleName: nil)
+        } else {
+            Task {
+                do {
+                    try await self.launch(req.url, in: choice.target, options: TargetOptions(privateWindow: privateWindow && choice.target.family.supportsPrivate))
+                    self.remember(req, target: choice.target, ruleName: nil)
+                } catch {
+                    self.pickerQueue.insert(PickerItem(request: req, reason: item.reason, note: error.localizedDescription), at: 0)
+                    self.drop.present()
+                }
             }
         }
         if pickerQueue.isEmpty { drop.dismiss() } else { drop.present() }
@@ -172,11 +220,13 @@ final class AppModel {
 
     func cancelPicker() {
         guard !pickerQueue.isEmpty else { return }
-        pickerQueue.removeFirst()
+        let item = pickerQueue.removeFirst()
+        _ = pickerHooks.removeValue(forKey: item.id)?(nil, false)
         if pickerQueue.isEmpty { drop.dismiss() } else { drop.present() }
     }
 
     func cancelAllPickers() {
+        for item in pickerQueue { _ = pickerHooks.removeValue(forKey: item.id)?(nil, false) }
         pickerQueue.removeAll()
         drop.dismiss()
     }
